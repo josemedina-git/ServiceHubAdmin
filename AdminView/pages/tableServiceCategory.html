@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>
+        WebService
+    </title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
+    <style>
+        /* Cambiar el color de las bolitas activas */
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            /* Color de fondo para la página activa */
+            border-color: #007bff;
+            /* Color del borde de la bolita activa */
+        }
+
+        /* Cambiar el color de las bolitas no activas */
+        .pagination .page-item .page-link {
+            background-color: #f1f1f1;
+            /* Color de fondo para las bolitas no activas */
+            border-color: #ddd;
+            /* Color del borde de las bolitas no activas */
+            color: #333;
+            /* Color del texto */
+        }
+
+        /* Cambiar el color de las bolitas cuando pasan el mouse sobre ellas */
+        .pagination .page-item:hover .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<script>
+    function toggleSubmenu(menuId, linkElement) {
+      var submenu = document.getElementById(menuId);
+      var isExpanded = submenu.style.display === "block";
+
+      submenu.style.display = isExpanded ? "none" : "block";
+      linkElement.classList.toggle("expanded", !isExpanded);
+      linkElement.classList.toggle("collapsed", isExpanded);
+    }
+  </script>
+<body class="g-sidenav-show  bg-gray-100" onload="renderTable()">
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2 bg-white my-2" id="sidenav-main">
+        <div class="sidenav-header">
+          <i class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+          <a class="navbar-brand px-4 py-3 m-0" href="dashboard.html">
+            <img src="../images/logosh.jpeg" navbar-brand-img width="26" height="26" alt="main_logo">
+            <span class="ms-1 text-sm text-dark">Administrador</span>
+          </a>
+        </div>
+        <hr class="horizontal dark mt-0 mb-2">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+          <ul class="navbar-nav">
+    
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="dashboard.html">
+                <i class="material-symbols-rounded opacity-5">dashboard</i>
+                <span class="nav-link-text ms-1">Dashboard</span>
+              </a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('professional-menu', this)">
+                <i class="material-symbols-rounded opacity-5">person</i>
+                <span class="nav-link-text ms-1">Profesional</span>
+                <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+              </a>
+              <ul id="professional-menu" class="submenu">
+                <li>
+                  <a class="nav-link text-dark" href="tableProfesional.html">
+                    <i class="material-symbols-rounded opacity-5">table_chart</i>
+                    <span class="nav-link-text ms-1">Tabla Profesional</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="tableProfesionalService.html">
+                    <i class="material-symbols-rounded opacity-5">build</i>
+                    <span class="nav-link-text ms-1">Servicio Profesional</span>
+                  </a>
+                </li>    
+              </ul>
+            </li>  
+            
+            <li class="nav-item">
+              <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('service-menu', this)">
+                <i class="material-symbols-rounded opacity-5">build</i>
+                <span class="nav-link-text ms-1">Servicios</span>
+                <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+              </a>
+              <ul id="service-menu" class="submenu">
+                <li>
+                  <a class="nav-link text-dark" href="tableService.html">
+                    <i class="material-symbols-rounded opacity-5">table_chart</i>
+                    <span class="nav-link-text ms-1">Tabla Servicios</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="tableReview.html">
+                    <i class="material-symbols-rounded opacity-5">assignment</i>
+                    <span class="nav-link-text ms-1">Reseñas</span>
+                  </a>
+                </li>       
+                <li>
+                  <a class="nav-link text-dark" href="tableServiceCategory.html">
+                    <i class="material-symbols-rounded opacity-5">assignment</i>
+                    <span class="nav-link-text ms-1">Categorías de Servicios</span>
+                  </a>
+                </li> 
+              </ul>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('category-menu', this)">
+                <i class="material-symbols-rounded opacity-5">label</i>
+                <span class="nav-link-text ms-1">Categoría</span>
+                <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+              </a>
+              <ul id="category-menu" class="submenu">
+                <li>
+                  <a class="nav-link text-dark" href="tableCategory.html">
+                    <i class="material-symbols-rounded opacity-5">table_chart</i>
+                    <span class="nav-link-text ms-1">Tabla Categorías</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="tableKeyWord.html">
+                    <i class="material-symbols-rounded opacity-5">search</i>
+                    <span class="nav-link-text ms-1">Keywords</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('client-menu', this)">
+                <i class="material-symbols-rounded opacity-5">groups</i>
+                <span class="nav-link-text ms-1">Cliente</span>
+                <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+              </a>
+              <ul id="client-menu" class="submenu">
+                <li>
+                  <a class="nav-link text-dark" href="tableCustomers.html">
+                    <i class="material-symbols-rounded opacity-5">table_chart</i>
+                    <span class="nav-link-text ms-1">Tabla Clientes</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="tableLocation.html">
+                    <i class="material-symbols-rounded opacity-5">location_on</i>
+                    <span class="nav-link-text ms-1">Ubicaciónes</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="tableAgenda.html">
+                    <i class="material-symbols-rounded opacity-5">event</i>
+                    <span class="nav-link-text ms-1">Agenda</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('suscription-menu', this)">
+                <i class="material-symbols-rounded opacity-5">receipt</i>
+                <span class="nav-link-text ms-1">Suscripción</span>
+                <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+              </a>
+              <ul id="suscription-menu" class="submenu">
+                <li>
+                  <a class="nav-link text-dark" href="tableSuscription.html">
+                    <i class="material-symbols-rounded opacity-5">table_chart</i>
+                    <span class="nav-link-text ms-1">Tabla Suscripciones</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="tablaTypeSusciption.html">
+                    <i class="material-symbols-rounded opacity-5">subscriptions</i>
+                    <span class="nav-link-text ms-1">Tipo de Suscripción</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="tablePayment.html">
+                    <i class="material-symbols-rounded opacity-5">payment</i>
+                    <span class="nav-link-text ms-1">Pago</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="tableTypePayment.html">
+                    <i class="material-symbols-rounded opacity-5">credit_card</i>
+                    <span class="nav-link-text ms-1">Tipo de Pago</span>
+                  </a>
+                </li>
+          
+              </ul>
+            </li>   
+    
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="ordenes.html">
+                <i class="material-symbols-rounded opacity-5">shopping_cart</i>
+                <span class="nav-link-text ms-1">Registro de Suscripciones</span>
+              </a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="log.html">
+                <i class="material-symbols-rounded opacity-5">history</i>
+                <span class="nav-link-text ms-1">Bitácora de movimientos</span>
+              </a>
+            </li>
+    
+          </ul>
+        </div>
+      </aside>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur"
+            data-scroll="true">
+            <div class="container-fluid py-1 px-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                        </li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
+                    </ol>
+                </nav>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                        <div class="input-group input-group-outline">
+                            <label class="form-label">Type here...</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <ul class="navbar-nav d-flex align-items-center  justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank"
+                                href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online
+                                Builder</a>
+                        </li>
+                        <li class="mt-1">
+                            <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard"
+                                data-icon="octicon-star" data-size="large" data-show-count="true"
+                                aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
+                        </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item px-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0">
+                                <i class="material-symbols-rounded fixed-plugin-button-nav">settings</i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown pe-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="material-symbols-rounded">notifications</i>
+                            </a>
+                            <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
+                                aria-labelledby="dropdownMenuButton">
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">New message</span> from Laur
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i>
+                                                    13 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img src="../assets/img/small-logos/logo-spotify.svg"
+                                                    class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">New album</span> by Travis Scott
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i>
+                                                    1 day
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
+                                                <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <title>credit-card</title>
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g transform="translate(-2169.000000, -745.000000)"
+                                                            fill="#FFFFFF" fill-rule="nonzero">
+                                                            <g transform="translate(1716.000000, 291.000000)">
+                                                                <g transform="translate(453.000000, 454.000000)">
+                                                                    <path class="color-background"
+                                                                        d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z"
+                                                                        opacity="0.593633743"></path>
+                                                                    <path class="color-background"
+                                                                        d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
+                                                                    </path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    Payment successfully completed
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i>
+                                                    2 days
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="admin.html" class="nav-link text-body font-weight-bold px-0">
+                                <i class="material-symbols-rounded">account_circle</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- End Navbar -->
+
+        <div class="container-fluid py-2">
+            <div class="row">
+                <div class="col-12">
+
+
+
+
+
+                    <div class="card my-4 shadow-lg border-0">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                                <h6 class="text-white text-capitalize ps-3">Tabla de Servicios por Categoria</h6>
+                            </div>
+                        </div>
+
+                        <div class="card-body px-4 pb-4">
+                            <!-- Filtros y búsqueda -->
+                            <div class="row mb-4">
+                                <!-- Filtro de registros por página -->
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="d-flex align-items-center">
+                                        <h6 class="me-2 text-muted">Registros por página:</h6>
+                                        <input id="recordsPerPage" type="number" value="5" min="1"
+                                            class="form-control form-control-sm shadow-sm"
+                                            style="width: 90px; border-radius: 8px; border: 2px solid #007bff;">
+                                    </div>
+                                </div>
+
+                                <!-- Búsqueda de registros -->
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="d-flex align-items-center">
+                                        <h6 class="me-2 text-muted">Buscar:</h6>
+                                        <input id="searchInput" type="text"
+                                            class="form-control form-control-sm shadow-sm ms-3"
+                                            placeholder="Buscar por Servicio"
+                                            style="border-radius: 8px; border: 2px solid #007bff;">
+                                    </div>
+                                </div>
+
+                                <!-- Dropdown de filtros -->
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-center justify-content-md-end">
+                                        <a class="dropdown-toggle btn btn-warning" href="#" id="navbarDropdownMenuLink"
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Filtros
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-left"
+                                            aria-labelledby="navbarDropdownMenuLink"
+                                            style="border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+                                            <li>
+                                                <div class="input-group mt-2 mx-2">
+                                                    <div class="form-outline w-auto" data-mdb-input-init>
+                                                        <input type="search" id="search-input-dropdown"
+                                                            class="form-control"
+                                                            style="border-radius: 8px; border: 2px solid #ffffff; padding: 8px; background-color: #f9f9f9; transition: all 0.3s ease;" />
+                                                        <label class="form-label" for="search-input-dropdown">Selecciona
+                                                            un filtro:</label>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider" style="border-color: #007bff;" />
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#"
+                                                    style="border-radius: 8px; padding: 10px 15px; font-size: 14px; transition: background-color 0.3s ease;">
+                                                    Buscar por Categoría
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div style="margin-top: 15px;">
+                                    <a href="formularios/formServiceCategory.html" class="btn btn-info">Agregar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                        onclick="sortTable(0)">
+                                        Id Servicio<span class="material-symbols-rounded arrow"
+                                            id="arrow-idService">expand_more</span>
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 "
+                                        onclick="sortTable(1)">
+                                        Servicio <span class="material-symbols-rounded arrow"
+                                            id="arrow-nameService">expand_more</span>
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                        onclick="sortTable(3)">
+                                        Id Categoria<span class="material-symbols-rounded arrow"
+                                            id="arrow-idCategory">expand_more</span>
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        onclick="sortTable(3)">
+                                        Categoría <span class="material-symbols-rounded arrow"
+                                            id="arrow-nameCategory">expand_more</span>
+                                    </th>
+                                    <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                        <ul class="pagination justify-content-center"></ul>
+
+                        <script>
+
+                            //busqueda
+                            function filterUsers(searchTerm) {
+                                return usuarios.filter(usuario => {
+                                    return usuario.nameService.toLowerCase().includes(searchTerm.toLowerCase());
+                                });
+                            }
+
+
+                            //Ordenamiento        
+                            let currentSort = {
+                                column: null,
+                                order: 'asc' // Puede ser 'asc' para ascendente y 'desc' para descendente
+                            };
+
+                            function sortTable(columnIndex) {
+                                let direction = 1;
+                                const arrow = document.querySelector(`#arrow-${['idService', 'nameService', 'idCategory', 'nameCategory'][columnIndex]}`);
+
+                                // Alternar dirección de la flecha
+                                if (arrow.innerHTML === 'expand_more') {
+                                    arrow.innerHTML = 'expand_less';
+                                    direction = 1;
+                                } else {
+                                    arrow.innerHTML = 'expand_more';
+                                    direction = -1;
+                                }
+
+                                usuarios.sort((a, b) => {
+                                    const aValue = Object.values(a)[columnIndex];
+                                    const bValue = Object.values(b)[columnIndex];
+
+                                    if (typeof aValue === 'string') {
+                                        return direction * aValue.localeCompare(bValue);
+                                    }
+                                    return direction * (aValue - bValue);
+                                });
+
+                                renderTable();
+                            }
+
+
+                            function updateArrows(colIndex) {
+                                const headers = document.querySelectorAll('th span');
+                                headers.forEach(header => {
+                                    const arrow = header.querySelector('.material-symbols-rounded');
+                                    if (header.id.endsWith('Sort')) {
+                                        if (parseInt(header.id.replace('Sort', '')) === colIndex) {
+                                            arrow.textContent = currentSort.order === 'asc' ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+                                        } else {
+                                            arrow.textContent = 'keyboard_arrow_down';
+                                        }
+                                    }
+                                });
+                            }
+
+
+
+                            const usuarios = [
+                                { idService: 1, nameService: 'Corte de Césped', idCategory: 3, nameCategory: 'Jardinería' },
+                                { idService: 2, nameService: 'Reparación de Tuberías', idCategory: 4, nameCategory: 'Plomería' },
+                                { idService: 3, nameService: 'Instalación Eléctrica', idCategory: 5, nameCategory: 'Electricidad' },
+                                { idService: 4, nameService: 'Fabricación de Muebles', idCategory: 6, nameCategory: 'Carpintería' },
+                                { idService: 5, nameService: 'Pintura de Interiores', idCategory: 7, nameCategory: 'Pintura' },
+                                { idService: 6, nameService: 'Limpieza Residencial', idCategory: 8, nameCategory: 'Limpieza' },
+                                { idService: 7, nameService: 'Cambio de Cerraduras', idCategory: 9, nameCategory: 'Cerrajería' },
+                                { idService: 8, nameService: 'Reparación de Calentadores', idCategory: 4, nameCategory: 'Plomería' },
+                                { idService: 9, nameService: 'Construcción de Muros', idCategory: 10, nameCategory: 'Albañilería' },
+                                { idService: 10, nameService: 'Mudanza Local', idCategory: 11, nameCategory: 'Mudanzas' },
+                                { idService: 11, nameService: 'Reparación de Autos', idCategory: 12, nameCategory: 'Mecánica' },
+                                { idService: 12, nameService: 'Instalación de Redes', idCategory: 13, nameCategory: 'Tecnología' },
+                                { idService: 13, nameService: 'Instalación de A/C', idCategory: 14, nameCategory: 'Climatización' },
+                                { idService: 14, nameService: 'Reparación de Refrigeradores', idCategory: 15, nameCategory: 'Electrodomésticos' },
+                                { idService: 15, nameService: 'Control de Plagas', idCategory: 16, nameCategory: 'Fumigación' }
+                            ];
+
+
+
+                            //PAginacion de abajito
+                            let currentPage = 1;
+                            let recordsPerPage = 5;  // Valor inicial
+
+                            // Función para obtener los registros de la página actual
+                            function getRecordsForPage(page, filteredUsers) {
+                                const start = (page - 1) * recordsPerPage;
+                                const end = page * recordsPerPage;
+                                return filteredUsers.slice(start, end);
+                            }
+
+                            // Función para renderizar la tabla
+                            // Modificar la función renderTable para filtrar antes de renderizar
+                            function renderTable() {
+                                const searchTerm = document.getElementById('searchInput').value;
+                                const filteredUsers = filterUsers(searchTerm); // Filtrar los usuarios
+
+                                const tableBody = document.querySelector('table tbody');
+                                tableBody.innerHTML = ''; // Limpiar contenido previo
+
+                                const recordsToShow = getRecordsForPage(currentPage, filteredUsers);
+                                recordsToShow.forEach(usuario => {
+                                    const row = `
+            <tr>
+                <td class="text-xs font-weight-bold mb-0">${usuario.idService}</td>
+                <td class="text-xs font-weight-bold mb-0">${usuario.nameService}</td>
+                <td class="text-xs font-weight-bold mb-0">${usuario.idCategory}</td>
+                <td class="text-xs font-weight-bold mb-0">${usuario.nameCategory}</td>
+
+                <td class="align-middle">
+                    <button type="button" class="btn btn-info">Editar</button>
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+        `;
+                                    tableBody.innerHTML += row;
+                                });
+
+                                // Actualizar la paginación
+                                updatePagination(filteredUsers);
+                            }
+                            // Función para actualizar la paginación
+                            function updatePagination(filteredUsers) {
+                                const totalPages = Math.ceil(filteredUsers.length / recordsPerPage);
+                                const pagination = document.querySelector('.pagination');
+                                pagination.innerHTML = '';
+
+                                // Botón de "Anterior"
+                                pagination.innerHTML += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="javascript:;" aria-label="Previous" onclick="changePage(currentPage - 1)">
+                <span class="material-symbols-rounded">keyboard_arrow_left</span>
+            </a>
+        </li>
+    `;
+
+                                // Páginas numéricas
+                                for (let i = 1; i <= totalPages; i++) {
+                                    pagination.innerHTML += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <a class="page-link" href="javascript:;" onclick="changePage(${i})">${i}</a>
+            </li>
+        `;
+                                }
+
+                                // Botón de "Siguiente"
+                                pagination.innerHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link " href="javascript:;" aria-label="Next" onclick="changePage(currentPage + 1)">
+                <span class="material-symbols-rounded">keyboard_arrow_right</span>
+            </a>
+        </li>
+    `;
+                            }
+                            // Función para cambiar de página
+                            function changePage(page) {
+                                const totalPages = Math.ceil(usuarios.length / recordsPerPage);
+                                if (page < 1 || page > totalPages) return;
+                                currentPage = page;
+                                renderTable();
+                            }
+
+                            // Evento para cambiar el número de registros por página
+                            document.getElementById('recordsPerPage').addEventListener('input', (event) => {
+                                recordsPerPage = parseInt(event.target.value) || 5; // Valor por defecto es 5 si no se ingresa un número
+                                currentPage = 1;  // Restablecer a la primera página
+                                renderTable();
+                            });
+
+                            document.getElementById('searchInput').addEventListener('input', () => {
+                                currentPage = 1;  // Restablecer a la primera página
+                                renderTable();    // Volver a renderizar la tabla con los filtros aplicados
+                            });
+                            renderTable();
+                            // Inicializar la tabla al cargar la página
+                            window.onload = () => renderTable();  // Asegura que la tabla se renderice correctamente al cargar
+
+                        </script>
+
+                        <div class="col-12">
+                            <div class="card my-4">
+                                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+    </main>
+    <div class="fixed-plugin">
+        <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+            <i class="material-symbols-rounded py-2">settings</i>
+        </a>
+        <div class="card shadow-lg">
+            <div class="card-header pb-0 pt-3">
+                <div class="float-start">
+                    <h5 class="mt-3 mb-0">Material UI Configurator</h5>
+                    <p>See our dashboard options.</p>
+                </div>
+                <div class="float-end mt-4">
+                    <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+                        <i class="material-symbols-rounded">clear</i>
+                    </button>
+                </div>
+                <!-- End Toggle Button -->
+            </div>
+            <hr class="horizontal dark my-1">
+            <div class="card-body pt-sm-3 pt-0">
+                <!-- Sidebar Backgrounds -->
+                <div>
+                    <h6 class="mb-0">Sidebar Colors</h6>
+                </div>
+                <a href="javascript:void(0)" class="switch-trigger background-color">
+                    <div class="badge-colors my-2 text-start">
+                        <span class="badge filter bg-gradient-primary" data-color="primary"
+                            onclick="sidebarColor(this)"></span>
+                        <span class="badge filter bg-gradient-dark active" data-color="dark"
+                            onclick="sidebarColor(this)"></span>
+                        <span class="badge filter bg-gradient-info" data-color="info"
+                            onclick="sidebarColor(this)"></span>
+                        <span class="badge filter bg-gradient-success" data-color="success"
+                            onclick="sidebarColor(this)"></span>
+                        <span class="badge filter bg-gradient-warning" data-color="warning"
+                            onclick="sidebarColor(this)"></span>
+                        <span class="badge filter bg-gradient-danger" data-color="danger"
+                            onclick="sidebarColor(this)"></span>
+                    </div>
+                </a>
+                <!-- Sidenav Type -->
+                <div class="mt-3">
+                    <h6 class="mb-0">Sidenav Type</h6>
+                    <p class="text-sm">Choose between different sidenav types.</p>
+                </div>
+                <div class="d-flex">
+                    <button class="btn bg-gradient-dark px-3 mb-2" data-class="bg-gradient-dark"
+                        onclick="sidebarType(this)">Dark</button>
+                    <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent"
+                        onclick="sidebarType(this)">Transparent</button>
+                    <button class="btn bg-gradient-dark px-3 mb-2  active ms-2" data-class="bg-white"
+                        onclick="sidebarType(this)">White</button>
+                </div>
+                <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+                <!-- Navbar Fixed -->
+                <div class="mt-3 d-flex">
+                    <h6 class="mb-0">Navbar Fixed</h6>
+                    <div class="form-check form-switch ps-0 ms-auto my-auto">
+                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed"
+                            onclick="navbarFixed(this)">
+                    </div>
+                </div>
+                <hr class="horizontal dark my-3">
+                <div class="mt-2 d-flex">
+                    <h6 class="mb-0">Light / Dark</h6>
+                    <div class="form-check form-switch ps-0 ms-auto my-auto">
+                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
+                            onclick="darkMode(this)">
+                    </div>
+                </div>
+                <hr class="horizontal dark my-sm-4">
+                <a class="btn bg-gradient-info w-100"
+                    href="https://www.creative-tim.com/product/material-dashboard-pro">Free
+                    Download</a>
+                <a class="btn btn-outline-dark w-100"
+                    href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard">View
+                    documentation</a>
+                <div class="w-100 text-center">
+                    <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard"
+                        data-icon="octicon-star" data-size="large" data-show-count="true"
+                        aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
+                    <h6 class="mt-3">Thank you for sharing!</h6>
+                    <a href="https://twitter.com/intent/tweet?text=Check%20Material%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard"
+                        class="btn btn-dark mb-0 me-2" target="_blank">
+                        <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard"
+                        class="btn btn-dark mb-0 me-2" target="_blank">
+                        <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/material-dashboard.min.js?v=3.2.0"></script>
+</body>
+
+</html>

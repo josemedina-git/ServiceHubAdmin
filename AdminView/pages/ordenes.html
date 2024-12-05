@@ -1,0 +1,504 @@
+<!--
+=========================================================
+* Material Dashboard 3 - v3.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard
+* Copyright 2024 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <title>
+    Material Dashboard 3 by Creative Tim
+  </title>
+  <!-- Fonts and icons -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
+</head>
+<script>
+  function toggleSubmenu(menuId, linkElement) {
+    var submenu = document.getElementById(menuId);
+    var isExpanded = submenu.style.display === "block";
+
+    submenu.style.display = isExpanded ? "none" : "block";
+    linkElement.classList.toggle("expanded", !isExpanded);
+    linkElement.classList.toggle("collapsed", isExpanded);
+  }
+</script>
+<body class="g-sidenav-show bg-gray-100">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2 bg-white my-2" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand px-4 py-3 m-0" href="dashboard.html">
+        <img src="../images/logosh.jpeg" navbar-brand-img width="26" height="26" alt="main_logo">
+        <span class="ms-1 text-sm text-dark">Administrador</span>
+      </a>
+    </div>
+    <hr class="horizontal dark mt-0 mb-2">
+    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="dashboard.html">
+            <i class="material-symbols-rounded opacity-5">dashboard</i>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('professional-menu', this)">
+            <i class="material-symbols-rounded opacity-5">person</i>
+            <span class="nav-link-text ms-1">Profesional</span>
+            <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+          </a>
+          <ul id="professional-menu" class="submenu">
+            <li>
+              <a class="nav-link text-dark" href="tableProfesional.html">
+                <i class="material-symbols-rounded opacity-5">table_chart</i>
+                <span class="nav-link-text ms-1">Tabla Profesional</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" href="tableProfesionalService.html">
+                <i class="material-symbols-rounded opacity-5">build</i>
+                <span class="nav-link-text ms-1">Servicio Profesional</span>
+              </a>
+            </li>    
+          </ul>
+        </li>  
+        
+        <li class="nav-item">
+          <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('service-menu', this)">
+            <i class="material-symbols-rounded opacity-5">build</i>
+            <span class="nav-link-text ms-1">Servicios</span>
+            <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+          </a>
+          <ul id="service-menu" class="submenu">
+            <li>
+              <a class="nav-link text-dark" href="tableService.html">
+                <i class="material-symbols-rounded opacity-5">table_chart</i>
+                <span class="nav-link-text ms-1">Tabla Servicios</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" href="tableReview.html">
+                <i class="material-symbols-rounded opacity-5">assignment</i>
+                <span class="nav-link-text ms-1">Reseñas</span>
+              </a>
+            </li>       
+            <li>
+              <a class="nav-link text-dark" href="tableServiceCategory.html">
+                <i class="material-symbols-rounded opacity-5">assignment</i>
+                <span class="nav-link-text ms-1">Categorías de Servicios</span>
+              </a>
+            </li> 
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('category-menu', this)">
+            <i class="material-symbols-rounded opacity-5">label</i>
+            <span class="nav-link-text ms-1">Categoría</span>
+            <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+          </a>
+          <ul id="category-menu" class="submenu">
+            <li>
+              <a class="nav-link text-dark" href="tableCategory.html">
+                <i class="material-symbols-rounded opacity-5">table_chart</i>
+                <span class="nav-link-text ms-1">Tabla Categorías</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" href="tableKeyWord.html">
+                <i class="material-symbols-rounded opacity-5">search</i>
+                <span class="nav-link-text ms-1">Keywords</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('client-menu', this)">
+            <i class="material-symbols-rounded opacity-5">groups</i>
+            <span class="nav-link-text ms-1">Cliente</span>
+            <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+          </a>
+          <ul id="client-menu" class="submenu">
+            <li>
+              <a class="nav-link text-dark" href="tableCustomers.html">
+                <i class="material-symbols-rounded opacity-5">table_chart</i>
+                <span class="nav-link-text ms-1">Tabla Clientes</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" href="tableLocation.html">
+                <i class="material-symbols-rounded opacity-5">location_on</i>
+                <span class="nav-link-text ms-1">Ubicaciónes</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" href="tableAgenda.html">
+                <i class="material-symbols-rounded opacity-5">event</i>
+                <span class="nav-link-text ms-1">Agenda</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-dark collapsed" href="#!" onclick="toggleSubmenu('suscription-menu', this)">
+            <i class="material-symbols-rounded opacity-5">receipt</i>
+            <span class="nav-link-text ms-1">Suscripción</span>
+            <i class="material-symbols-rounded dropdown-arrow">expand_more</i>
+          </a>
+          <ul id="suscription-menu" class="submenu">
+            <li>
+              <a class="nav-link text-dark" href="tableSuscription.html">
+                <i class="material-symbols-rounded opacity-5">table_chart</i>
+                <span class="nav-link-text ms-1">Tabla Suscripciones</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" href="tablaTypeSusciption.html">
+                <i class="material-symbols-rounded opacity-5">subscriptions</i>
+                <span class="nav-link-text ms-1">Tipo de Suscripción</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" href="tablePayment.html">
+                <i class="material-symbols-rounded opacity-5">payment</i>
+                <span class="nav-link-text ms-1">Pago</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" href="tableTypePayment.html">
+                <i class="material-symbols-rounded opacity-5">credit_card</i>
+                <span class="nav-link-text ms-1">Tipo de Pago</span>
+              </a>
+            </li>
+      
+          </ul>
+        </li>   
+
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="ordenes.html">
+            <i class="material-symbols-rounded opacity-5">shopping_cart</i>
+            <span class="nav-link-text ms-1">Registro de Suscripciones</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="log.html">
+            <i class="material-symbols-rounded opacity-5">history</i>
+            <span class="nav-link-text ms-1">Bitácora de movimientos</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </aside>
+      <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+          <div class="container-fluid py-1 px-3">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+              </ol>
+            </nav>
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+              <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group input-group-outline">
+                  <label class="form-label">Type here...</label>
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <ul class="navbar-nav d-flex align-items-center justify-content-end">
+                <li class="nav-item d-flex align-items-center">
+                  <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online Builder</a>
+                </li>
+                <li class="nav-item d-flex align-items-center">
+                  <a href="admin.html" class="nav-link text-body font-weight-bold px-0">
+                    <i class="material-symbols-rounded">account_circle</i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+        
+        <div class="container-fluid py-2">
+          <div class="row">
+            <div class="ms-3">
+              <h3 class="mb-0 h4 font-weight-bolder">Suscripciones</h3>
+              <p class="mb-4">Visualiza y gestiona las suscripciones.</p>
+            </div>
+            
+            <div class="col-xl-12 col-sm-12 mb-4">
+              <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Filtrar Suscripciones</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <label class="form-label"></label>
+                        <input type="date" class="form-control" id="filterDate">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <label class="form-label"></label>
+                        <select class="form-select" id="filterStatus">
+                          <option value="">Todos</option>
+                          <option value="pending">Pendiente</option>
+                          <option value="approved">Aprobada</option>
+                          <option value="canceled">Cancelada</option>
+                          <option value="unauthorized">No Autorizada</option>
+                          <option value="shipped">Enviada</option>
+                          <option value="delivered">Entregada</option>
+                          <option value="returned">Devuelta</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-primary" onclick="filterOrders()">Filtrar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-xl-12 col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="mb-0">Lista de Suscripciones</h5>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                      <thead>
+                        <tr>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID de Orden</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estatus</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>001</td>
+                          <td>Juan Pérez</td>
+                          <td>2024-01-15</td>
+                          <td>
+                            <select class="form-select" onchange="updateOrderStatus(this)">
+                              <option value="pending">Pendiente</option>
+                              <option value="approved">Aprobada</option>
+                              <option value="canceled">Cancelada</option>
+                              <option value="unauthorized">No Autorizada</option>
+                              <option value="shipped">Enviada</option>
+                              <option value="delivered">Entregada</option>
+                              <option value="returned">Devuelta</option>
+                            </select>
+                          </td>
+                          <td>
+                            <button class="btn btn-warning btn-sm">Editar</button>
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>002</td>
+                          <td>María Gómez</td>
+                          <td>2024-01-16</td>
+                          <td>
+                            <select class="form-select" onchange="updateOrderStatus(this)">
+                              <option value="pending">Pendiente</option>
+                              <option value="approved">Aprobada</option>
+                              <option value="canceled">Cancelada</option>
+                              <option value="unauthorized">No Autorizada</option>
+                              <option value="shipped">Enviada</option>
+                              <option value="delivered">Entregada</option>
+                              <option value="returned">Devuelta</option>
+                            </select>
+                          </td>
+                          <td>
+                            <button class="btn btn-warning btn-sm">Editar</button>
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                          </td>
+                        </tr>
+                        <!-- Más filas de órdenes pueden ser añadidas aquí -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Sección de Reseñas -->
+<div class="col-xl-12 col-sm-12 mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Reseñas</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <select class="form-select" id="filterType" onchange="filterReviews()">
+            <option value="">Selecciona un tipo de reseña</option>
+            <option value="positivo">Positivo</option>
+            <option value="neutral">Neutral</option>
+            <option value="negativo">Negativo</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <input type="date" class="form-control" id="filterDate" onchange="filterReviews()">
+        </div>
+      </div>
+      <div class="table-responsive mt-3">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Reseña</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="reviewList">
+            <tr data-type="positivo" data-date="2024-01-15">
+              <td>Juan Pérez</td>
+              <td>Excelente servicio, muy satisfecho.</td>
+              <td>2024-01-15</td>
+              <td>
+                <button class="btn btn-danger btn-sm" onclick="deleteReview(this)">Eliminar</button>
+              </td>
+            </tr>
+            <tr data-type="neutral" data-date="2024-01-16">
+              <td>María Gómez</td>
+              <td>La experiencia fue buena, pero podría mejorar.</td>
+              <td>2024-01-16</td>
+              <td>
+                <button class="btn btn-danger btn-sm" onclick="deleteReview(this)">Eliminar</button>
+              </td>
+            </tr>
+            <tr data-type="negativo" data-date="2024-01-17">
+              <td>Carlos Ruiz</td>
+              <td>No estoy satisfecho con el servicio.</td>
+              <td>2024-01-17</td>
+              <td>
+                <button class="btn btn-danger btn-sm" onclick="deleteReview(this)">Eliminar</button>
+              </td>
+            </tr>
+            <!-- Más reseñas pueden ser añadidas aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function filterReviews() {
+    const filterType = document.getElementById('filterType').value;
+    const filterDate = document.getElementById('filterDate').value;
+    const reviews = document.querySelectorAll('#reviewList tr');
+
+    reviews.forEach(review => {
+      const reviewType = review.getAttribute('data-type');
+      const reviewDate = review.getAttribute('data-date');
+
+      const matchesType = filterType ? reviewType === filterType : true;
+      const matchesDate = filterDate ? reviewDate === filterDate : true;
+
+      if (matchesType && matchesDate) {
+        review.style.display = ''; // Mostrar la reseña
+      } else {
+        review.style.display = 'none'; // Ocultar la reseña
+      }
+    });
+  }
+
+  function deleteReview(button) {
+    const row = button.closest('tr');
+    row.remove(); // Eliminar la fila de la tabla
+  }
+</script>
+          <footer class="footer py-4">
+            <div class="container-fluid">
+              <div class="row align-items-center justify-content-lg-between">
+                <div class="col-lg-6 mb-lg-0 mb-4">
+                    <div class="copyright text-center text-sm text-muted text-lg-start">
+                      © <script>
+                        document.write(new Date().getFullYear())
+                      </script>,
+                      hecho con <i class="fa fa-heart"></i> por
+                      <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+                      para una mejor web.
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                      <li class="nav-item">
+                        <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">Sobre nosotros</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">Licencia</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </main>
+      
+        <!--   Core JS Files   -->
+        <script src="../assets/js/core/popper.min.js"></script>
+        <script src="../assets/js/core/bootstrap.min.js"></script>
+        <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+        <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+        <script src="../assets/js/material-dashboard.min.js?v=3.2.0"></script>
+      
+        <script>
+          function filterOrders() {
+            const date = document.getElementById('filterDate').value;
+            const status = document.getElementById('filterStatus').value;
+            // Implementar lógica para filtrar órdenes según la fecha y el estatus
+            console.log('Filtrar órdenes por fecha:', date, 'y estatus:', status);
+          }
+      
+          function updateOrderStatus(selectElement) {
+            const newStatus = selectElement.value;
+            // Implementar lógica para actualizar el estatus de la orden
+            console.log('Nuevo estatus de la orden:', newStatus);
+          }
+        </script>
+      </body>
+      
+      </html>
