@@ -469,21 +469,18 @@
                                             <li>
                                                 <a class="dropdown-item" href="#"
                                                     style="border-radius: 8px; padding: 10px 15px; font-size: 14px; transition: background-color 0.3s ease;">
-                                                    Buscar por Fecha
+                                                    Buscar por Importe
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="#"
                                                     style="border-radius: 8px; padding: 10px 15px; font-size: 14px; transition: background-color 0.3s ease;">
-                                                    Buscar por Estado
+                                                    Buscar por Status
                                                 </a>
                                             </li>
                                         </ul>
 
                                     </div>
-                                </div>
-                                <div style="margin-top: 15px;">
-                                    <a href="formularios/paymentForm.html" class="btn btn-info">Agregar</a>
                                 </div>
                             </div>
                         </div>
@@ -600,26 +597,22 @@
 
 
                             const usuarios = [
-                                { factura: 'FAC001', suscripcion: 'Gratis', estado: 'Activa', importe: 0, metodoPago: 'N/A' },
-                                { factura: 'FAC002', suscripcion: 'Mensual', estado: 'Activa', importe: 100, metodoPago: 'Tarjeta debito/credito' },
-                                { factura: 'FAC003', suscripcion: 'Anual', estado: 'Activa', importe: 900, metodoPago: 'Paypal' },
-                                { factura: 'FAC004', suscripcion: 'Mensual', estado: 'Vencido', importe: 100, metodoPago: 'Tarjeta debito/credito' },
-                                { factura: 'FAC005', suscripcion: 'Gratis', estado: 'Activa', importe: 0, metodoPago: 'N/A' },
-                                { factura: 'FAC006', suscripcion: 'Anual', estado: 'Activa', importe: 900, metodoPago: 'Paypal' },
-                                { factura: 'FAC007', suscripcion: 'Mensual', estado: 'Activa', importe: 100, metodoPago: 'Paypal' },
-                                { factura: 'FAC008', suscripcion: 'Mensual', estado: 'Vencido', importe: 100, metodoPago: 'Tarjeta debito/credito' },
-                                { factura: 'FAC009', suscripcion: 'Anual', estado: 'Activa', importe: 900, metodoPago: 'Tarjeta debito/credito' },
-                                { factura: 'FAC010', suscripcion: 'Gratis', estado: 'Activa', importe: 0, metodoPago: 'N/A' },
-                                { factura: 'FAC011', suscripcion: 'Anual', estado: 'Vencido', importe: 900, metodoPago: 'Paypal' },
-                                { factura: 'FAC012', suscripcion: 'Mensual', estado: 'Activa', importe: 100, metodoPago: 'Tarjeta debito/credito' },
-                                { factura: 'FAC013', suscripcion: 'Gratis', estado: 'Activa', importe: 0, metodoPago: 'N/A' },
-                                { factura: 'FAC014', suscripcion: 'Mensual', estado: 'Activa', importe: 100, metodoPago: 'Paypal' },
-                                { factura: 'FAC015', suscripcion: 'Anual', estado: 'Vencido', importe: 900, metodoPago: 'Tarjeta debito/credito' }
+                                { factura: 'FAC001', suscripcion: 'Gratis', estado: 'Pagado', importe: 0, metodoPago: 'N/A' },
+                                { factura: 'FAC002', suscripcion: 'Mensual', estado: 'Pendiente', importe: 100, metodoPago: 'Tarjeta debito/credito' },
+                                { factura: 'FAC003', suscripcion: 'Anual', estado: 'Vencido', importe: 900, metodoPago: 'Paypal' },
+                                { factura: 'FAC004', suscripcion: 'Mensual', estado: 'Pagado', importe: 100, metodoPago: 'Tarjeta debito/credito' },
+                                { factura: 'FAC005', suscripcion: 'Gratis', estado: 'Vencido', importe: 0, metodoPago: 'N/A' },
+                                { factura: 'FAC006', suscripcion: 'Anual', estado: 'Pagado', importe: 900, metodoPago: 'Paypal' },
+                                { factura: 'FAC007', suscripcion: 'Mensual', estado: 'Pendiente', importe: 100, metodoPago: 'Paypal' },
+                                { factura: 'FAC008', suscripcion: 'Mensual', estado: 'Pendiente', importe: 100, metodoPago: 'Tarjeta debito/credito' },
+                                { factura: 'FAC009', suscripcion: 'Anual', estado: 'Cancelado', importe: 900, metodoPago: 'Tarjeta debito/credito' },
+                                { factura: 'FAC010', suscripcion: 'Gratis', estado: 'Cancelado', importe: 0, metodoPago: 'N/A' },
+                                { factura: 'FAC011', suscripcion: 'Anual', estado: 'Cancelado', importe: 900, metodoPago: 'Paypal' },
+                                { factura: 'FAC012', suscripcion: 'Mensual', estado: 'Pagado', importe: 100, metodoPago: 'Tarjeta debito/credito' },
+                                { factura: 'FAC013', suscripcion: 'Gratis', estado: 'Cancelado', importe: 0, metodoPago: 'N/A' },
+                                { factura: 'FAC014', suscripcion: 'Mensual', estado: 'Vencido', importe: 100, metodoPago: 'Paypal' },
+                                { factura: 'FAC015', suscripcion: 'Anual', estado: 'Pendiente', importe: 900, metodoPago: 'Tarjeta debito/credito' }
                             ];
-
-
-
-
 
 
                             //PAginacion de abajito
@@ -653,11 +646,11 @@
                 <td class="text-xs font-weight-bold mb-0">${usuario.metodoPago}</td>
 
                 <td class="align-middle">
-                    <button type="button" class="btn btn-info">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                <a href="formularios/paymentForm.html" class="btn btn-info">Editar</a>
                 </td>
-            </tr>
-        `;
+
+                 </tr>
+                      `;
                                     tableBody.innerHTML += row;
                                 });
 
@@ -721,9 +714,6 @@
                             window.onload = () => renderTable();  // Asegura que la tabla se renderice correctamente al cargar
 
                         </script>
-
-
-
 
                         <div class="col-12">
                             <div class="card my-4">
