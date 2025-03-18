@@ -310,45 +310,36 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table align-items-center mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    onclick="sortTable(0)">
-                                                    Id <span class="material-symbols-rounded arrow"
-                                                        id="arrow-id">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                                    onclick="sortTable(1)">
-                                                    Nombre <span class="material-symbols-rounded arrow"
-                                                        id="arrow-nombre">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                    onclick="sortTable(2)">
-                                                    Apellidos <span class="material-symbols-rounded arrow"
-                                                        id="arrow-apellidos">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                    onclick="sortTable(3)">
-                                                    Correo Electrónico <span class="material-symbols-rounded arrow"
-                                                        id="arrow-email">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                    onclick="sortTable(4)">
-                                                    Número de Teléfono <span class="material-symbols-rounded arrow"
-                                                        id="arrow-telefono">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                    onclick="sortTable(5)">
-                                                    Fecha de Registro <span class="material-symbols-rounded arrow"
-                                                        id="arrow-fecha">expand_more</span>
-                                                </th>
-                                                <th
-                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
-                                                    Acciones
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
+                                    <thead>
+        <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">PrimerNombre</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Apellido</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Correo</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Telefono</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Contraseña</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($clients as $client)
+        <tr>
+        <td class="text-xs font-weight-bold mb-0">{{ $client->IdClient }}</td>
+        <td class="text-xs font-weight-bold mb-0">{{ $client->FirstName }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $client->LastName }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $client->Email }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $client->PhoneNumber }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $client->Password }}</td>
+            <td class="align-middle">
+                <a href="{{ route('clients.edit', $client->IdClient) }}" class="btn btn-info">Editar</a>
+                <form action="{{ route('clients.destroy', $client->IdClient) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -415,23 +406,7 @@
 
 
 
-                            const usuarios = [
-                                { id: 1, nombre: 'John', apellidos: 'Doe', email: 'john@creative-tim.com', telefono: '+1 234 567 8901', fechaRegistro: '23/04/18' },
-                                { id: 2, nombre: 'Alexa', apellidos: 'Liras', email: 'alexa@creative-tim.com', telefono: '+1 234 567 8902', fechaRegistro: '11/01/19' },
-                                { id: 3, nombre: 'Laurent', apellidos: 'Perrier', email: 'laurent@creative-tim.com', telefono: '+1 234 567 8903', fechaRegistro: '19/09/17' },
-                                { id: 4, nombre: 'Michael', apellidos: 'Levi', email: 'michael@creative-tim.com', telefono: '+1 234 567 8904', fechaRegistro: '24/12/08' },
-                                { id: 5, nombre: 'Richard', apellidos: 'Gran', email: 'richard@creative-tim.com', telefono: '+1 234 567 8905', fechaRegistro: '04/10/21' },
-                                { id: 6, nombre: 'Julia', apellidos: 'Roberts', email: 'julia@creative-tim.com', telefono: '+1 234 567 8906', fechaRegistro: '14/02/22' },
-                                { id: 7, nombre: 'Paul', apellidos: 'Anderson', email: 'paul@creative-tim.com', telefono: '+1 234 567 8907', fechaRegistro: '08/03/20' },
-                                { id: 8, nombre: 'Sophia', apellidos: 'Smith', email: 'sophia@creative-tim.com', telefono: '+1 234 567 8908', fechaRegistro: '05/09/18' },
-                                { id: 9, nombre: 'Emily', apellidos: 'Johnson', email: 'emily@creative-tim.com', telefono: '+1 234 567 8909', fechaRegistro: '12/11/21' },
-                                { id: 10, nombre: 'Daniel', apellidos: 'Brown', email: 'daniel@creative-tim.com', telefono: '+1 234 567 8910', fechaRegistro: '18/07/19' },
-                                { id: 11, nombre: 'Olivia', apellidos: 'Williams', email: 'olivia@creative-tim.com', telefono: '+1 234 567 8911', fechaRegistro: '03/12/22' },
-                                { id: 12, nombre: 'Ethan', apellidos: 'Taylor', email: 'ethan@creative-tim.com', telefono: '+1 234 567 8912', fechaRegistro: '09/05/21' },
-                                { id: 13, nombre: 'Ava', apellidos: 'Miller', email: 'ava@creative-tim.com', telefono: '+1 234 567 8913', fechaRegistro: '27/08/20' },
-                                { id: 14, nombre: 'Lucas', apellidos: 'Davis', email: 'lucas@creative-tim.com', telefono: '+1 234 567 8914', fechaRegistro: '02/07/19' },
-                                { id: 15, nombre: 'Isabella', apellidos: 'Garcia', email: 'isabella@creative-tim.com', telefono: '+1 234 567 8915', fechaRegistro: '17/11/22' }
-                            ];
+                            
 
                             //PAginacion de abajito
                             let currentPage = 1;

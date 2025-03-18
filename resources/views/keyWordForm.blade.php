@@ -319,79 +319,35 @@
 
         <!-- End Navbar -->
 
+        @include('layouts.partials.aside')
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <div class="container-fluid py-2">
             <div class="row">
                 <div class="col-12">
                     <div class="card my-4 shadow-lg border-0">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Agregar Palabra Clave</h6>
+                                <h6 class="text-white text-capitalize ps-3">Palabra Clave</h6>
                             </div>
                         </div>
                         <div class="card-body px-4 pb-4">
+                            <form action="{{ isset($keyword) ? route('keywords.update', $keyword->IdKeyWord) : route('keywords.store') }}" method="POST">
+                                @csrf
+                                @if(isset($keyword))
+                                    @method('PUT')
+                                @endif
+                                <div class="mb-3">
+                                    <label for="NameCategory" class="form-label">Palabra</label>
+                                    <input type="text" class="form-control" id="Word" name="Word" value="{{ isset($keyword) ? $keyword->Word : '' }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">{{ isset($keyword) ? 'Guardar Cambios' : 'Agregar Palabra Clave' }}</button>
+                            </form>
                         </div>
                     </div>
-
-                    <div class="container d-flex justify-content-center">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <!-- Card conteniendo el formulario -->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center mb-4">Formulario de palabras</h5>
-                                        <form id="formulario" onsubmit="mostrarConfirmacion(event)">
-                                            <div class="form-row me-2">
-
-                                                <div class="form-group col-md-4">
-                                                    <label for="word" class="text-black fw-bold">Palabra Clave</label>
-                                                    <input type="text" class="form-control custom-input" id="word"
-                                                        placeholder="Escribir palabra">
-                                                </div>
-
-                                                <div class="form-group col-md-4 me-2">
-                                                    <label for="categoria" class="text-black fw-bold">Categoría</label>
-                                                    <select id="categoria" class="lista">
-                                                        <option>Seleccionar</option>
-                                                        <option>Seleccionar</option>
-                                                        <option>Plomería</option>
-                                                        <option>Electricidad</option>
-                                                        <option>Carpintería</option>
-                                                        <option>Jardinería</option>
-                                                        <option>Limpieza</option>
-                                                        <option>Pintura</option>
-                                                        <option>Cerrajería</option>
-                                                        <option>Reparación de electrodomésticos</option>
-                                                        <option>Servicio de mudanza</option>
-                                                        <option>Albañilería</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="comentarios">Descripción</label>
-                                                <textarea id="comentarios" class="form-control" rows="4"
-                                                    placeholder="Describe tu palabra aquí..."></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Enviar</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                        <!-- Card de confirmación modal, inicialmente oculta -->
-                        <div id="confirmacionModal" class="modal-overlay" style="display: none;">
-                            <div class="card modal-card">
-                                <div class="card-body">
-                                    <button type="button" class="close-btn" onclick="cerrarConfirmacion()">×</button>
-                                    <h5 class="card-title text-center">¡Agregado Correctamente!</h5>
-                                    <p class="card-text text-center">La Palabra ha sido agregada con éxito.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
                     @include('layouts.partials.footer')
-
     </main>
     @include('layouts.partials.config')
 </body>
