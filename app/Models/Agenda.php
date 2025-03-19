@@ -18,8 +18,8 @@ class Agenda extends Model
         return $this->belongsTo(Client::class, 'IdClient', 'IdClient');
     }
 
-    public function service()
+    public function services()
     {
-        return $this->belongsTo(Service::class, 'IdService', 'IdService');
+        return $this->belongsTo(Services::class, 'IdService', 'IdService');
     }
 }

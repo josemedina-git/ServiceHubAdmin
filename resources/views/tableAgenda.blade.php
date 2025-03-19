@@ -352,14 +352,14 @@
         @foreach($agendas as $agenda)
         <tr>
             <td class="text-xs font-weight-bold mb-0">{{ $agenda->IdAgenda }}</td>
-            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->clients->FirstName }}</td>
-            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->clients->LastName }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->client->FirstName }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->client->LastName }}</td>
             <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->services->NameService }}</td>
             <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->DateAgenda }}</td>
             <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->AgendaStatus }}</td>
             <td class="align-middle">
-                <a href="{{ route('keywords.edit', $keyword->IdKeyWord) }}" class="btn btn-info">Editar</a>
-                <form action="{{ route('keywords.destroy', $keyword->IdKeyWord) }}" method="POST" style="display:inline;">
+                <a href="{{ route('agendas.edit', $agenda->IdAgenda) }}" class="btn btn-info">Editar</a>
+                <form action="{{ route('agendas.destroy', $agenda->IdAgenda) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>

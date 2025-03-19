@@ -8,7 +8,7 @@ class AgendaController extends Controller
 {
     public function index()
     {
-        $agendas = Agenda::with(['client', 'service'])->get();
+        $agendas = Agenda::with(['client', 'services'])->get();
         return view('tableAgenda', compact('agendas'));
     }
 
