@@ -318,139 +318,61 @@
     </nav>
 
         <!-- End Navbar -->
-        <div class="container-fluid py-2">
-            <div class="row">
-                <div class="col-12">
-
-
-                    <div class="card my-4 shadow-lg border-0">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Agregar Categoría al Servicio</h6>
-                            </div>
-                        </div>
-                        <div class="card-body px-4 pb-4">
+      
+@include('layouts.partials.aside')
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+    <div class="container-fluid py-2">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4 shadow-lg border-0">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Agregar Categoría al Servicio</h6>
                         </div>
                     </div>
-
-                    <div class="container d-flex justify-content-center">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <!-- Card conteniendo el formulario -->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center mb-4">Formulario de Servicios y Categorias</h5>
-                                        <form id="formulario" onsubmit="mostrarConfirmacion(event)">
-                                            <div class="form-row me-2">
-
-                                                <div class="form-group col-md-4 me-6">
-                                                    <label for="cliente" class="text-black fw-bold">
-                                                        Servicio</label>
-                                                    <select id="servicio" class="lista">
-                                                        <option selected>Seleccionar</option>
-
-                                                        <option>Reparación de fugas</option>
-                                                        <option>Instalación de grifos y lavabos</option>
-                                                        <option>Mantenimiento de sistemas de drenaje</option>
-                                                        <option>Desatasco de tuberías</option>
-
-                                                        <!-- Electricidad -->
-                                                        <option>Instalación de interruptores y enchufes</option>
-                                                        <option>Reparación de cortocircuitos</option>
-                                                        <option>Instalación de lámparas y bombillas</option>
-                                                        <option>Reemplazo de cableado eléctrico</option>
-
-                                                        <!-- Carpintería -->
-                                                        <option>Fabricación de muebles a medida</option>
-                                                        <option>Instalación de puertas y ventanas</option>
-                                                        <option>Reparación de muebles de madera</option>
-                                                        <option>Restauración de muebles antiguos</option>
-
-                                                        <!-- Jardinería -->
-                                                        <option>Diseño y mantenimiento de jardines</option>
-                                                        <option>Siembra de plantas y árboles</option>
-                                                        <option>Recorte y poda de arbustos</option>
-                                                        <option>Instalación de sistemas de riego</option>
-
-                                                        <!-- Limpieza -->
-                                                        <option>Limpieza general de casas</option>
-                                                        <option>Limpiar alfombras y tapicería</option>
-                                                        <option>Lavado de ventanas</option>
-                                                        <option>Limpieza de oficinas</option>
-
-                                                        <!-- Pintura -->
-                                                        <option>Pintura de interiores</option>
-                                                        <option>Pintura de exteriores</option>
-                                                        <option>Pintura de muebles</option>
-                                                        <option>Pintura de fachadas</option>
-
-                                                        <!-- Cerrajería -->
-                                                        <option>Apertura de cerraduras</option>
-                                                        <option>Instalación de cerraduras nuevas</option>
-                                                        <option>Reparación de cerraduras dañadas</option>
-                                                        <option>Cambio de llaves</option>
-
-                                                        <!-- Reparación de electrodomésticos -->
-                                                        <option>Reparación de refrigeradores</option>
-                                                        <option>Reparación de lavadoras</option>
-                                                        <option>Reparación de microondas</option>
-                                                        <option>Reparación de estufas</option>
-
-                                                        <!-- Servicio de mudanza -->
-                                                        <option>Embalaje y transporte de muebles</option>
-                                                        <option>Desmontaje y montaje de muebles</option>
-                                                        <option>Traslado de electrodomésticos</option>
-                                                        <option>Mudanza de oficina</option>
-
-                                                        <!-- Albañilería -->
-                                                        <option>Construcción de paredes</option>
-                                                        <option>Reparación de paredes y techos</option>
-                                                        <option>Instalación de pisos</option>
-                                                        <option>Colocación de azulejos y cerámica</option>
-
-                                                    </select>
-                                                </div>
-                                                <br>
-
-
-                                                <div class="form-group col-md-4 me-2">
-                                                    <label for="categoria" class="text-black fw-bold">Categoría</label>
-                                                    <select id="categoria" class="lista">
-                                                        <option selected>Seleccionar</option>
-                                                        <option>Plomería</option>
-                                                        <option>Electricidad</option>
-                                                        <option>Carpintería</option>
-                                                        <option>Jardinería</option>
-                                                        <option>Limpieza</option>
-                                                        <option>Pintura</option>
-                                                        <option>Cerrajería</option>
-                                                        <option>Reparación de electrodomésticos</option>
-                                                        <option>Servicio de mudanza</option>
-                                                        <option>Albañilería</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Enviar</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-
+                    <div class="card-body px-4 pb-4">
+                        <form action="{{ isset($serviceCategory) ? route('service_categories.update', [$serviceCategory->IdService, $serviceCategory->IdCategory]) : route('service_categories.store') }}" method="POST">
+                            @csrf
+                            @if(isset($serviceCategory))
+                                @method('PUT')
+                            @endif
+                            <div class="mb-3">
+                                <label for="IdService" class="form-label">Servicio</label>
+                                <select class="form-control" id="IdService" name="IdService">
+    @if(isset($services) && count($services) > 0)
+        @foreach($services as $service)
+            <option value="{{ $service->IdService }}">{{ $service->NameService }}</option>
+        @endforeach
+    @else
+        <option value="">No hay servicios disponibles</option>
+    @endif
+</select>
                             </div>
-                        </div>
-                        <!-- Card de confirmación modal, inicialmente oculta -->
-                        <div id="confirmacionModal" class="modal-overlay" style="display: none;">
-                            <div class="card modal-card">
-                                <div class="card-body">
-                                    <button type="button" class="close-btn" onclick="cerrarConfirmacion()">×</button>
-                                    <h5 class="card-title text-center">¡Agregado Correctamente!</h5>
-                                    <p class="card-text text-center">El servicio ha sido agregada con éxito.</p>
-                                </div>
+                            <div class="mb-3">
+                                <label for="IdCategory" class="form-label">Categoría</label>
+                                <select class="form-control" id="IdCategory" name="IdCategory"> 
+    @if(isset($categories) && count($categories) > 0)
+        @foreach($categories as $category)
+            <option value="{{ $category->IdCategory }}" 
+                {{ isset($serviceCategory) && $serviceCategory->IdCategory == $category->IdCategory ? 'selected' : '' }}>
+                {{ $category->NameCategory }}
+            </option>
+        @endforeach
+    @else
+        <option value="">No hay categorías disponibles</option>
+    @endif
+</select>
+    
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">{{ isset($serviceCategory) ? 'Guardar Cambios' : 'Agregar Categoría al Servicio' }}</button>
+                        </form>
                     </div>
-                    @include('layouts.partials.footer')
-    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+    @include('layouts.partials.footer')
+</main>
     @include('layouts.partials.config')
 </body>
 

@@ -312,44 +312,42 @@
                                     <div class="table-responsive">
                                         <table class="table align-items-center mb-0">
                                             <thead>
-                                                <tr>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(0)">
-                                                        Id <span class="material-symbols-rounded arrow"
-                                                            id="arrow-id">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(1)">
-                                                        Profesional <span class="material-symbols-rounded arrow"
-                                                            id="arrow-profesional">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(2)">
-                                                        CURP <span class="material-symbols-rounded arrow"
-                                                            id="arrow-curp">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(3)">
-                                                        RFC <span class="material-symbols-rounded arrow"
-                                                            id="arrow-rfc">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(4)">
-                                                        Experiencia <span class="material-symbols-rounded arrow"
-                                                            id="arrow-experiencia">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                        onclick="sortTable(5)">
-                                                        Disponibilidad <span class="material-symbols-rounded arrow"
-                                                            id="arrow-disponibilidad">expand_more</span>
-                                                    </th>
-                                                    <th
-                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
-                                                        Acciones
-                                                    </th>
-                                                </tr>
+                                            <tr>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">First Name</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Last Name</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">CURP</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">RFC</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Experience</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Availability</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Email</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Password</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Acciones</th>
+</tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody>
+    @foreach($profesionals as $profesional)
+    <tr>
+        <td class="text-xs font-weight-bold mb-0">{{ $profesional->IdProfessional }}</td>
+        <td class="text-xs font-weight-bold mb-0">{{ $profesional->FirstName }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $profesional->LastName }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $profesional->CURP }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $profesional->RFC }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $profesional->Experience }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $profesional->Availability }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $profesional->Email }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $profesional->Password }}</td>
+        <td class="align-middle">
+            <a href="{{ route('profesionals.edit', $profesional->IdProfessional) }}" class="btn btn-info">Editar</a>
+            <form action="{{ route('profesionals.destroy', $profesional->IdProfessional) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -415,28 +413,6 @@
                                     }
                                 });
                             }
-
-
-
-                            const usuarios = [
-                                { id: 1, profesional: 'Carlos Martínez', curp: 'MARC800101HDFLNS01', rfc: 'MARC800101DFA', experiencia: '5 años', disponibilidad: 'Tiempo completo' },
-                                { id: 2, profesional: 'Ana Gómez', curp: 'GOMA810202MDFLRS02', rfc: 'GOMA810202DF1', experiencia: '3 años', disponibilidad: 'Medio tiempo' },
-                                { id: 3, profesional: 'Juan Pérez', curp: 'PEJJ820303HDFLNS03', rfc: 'PEJJ820303DF2', experiencia: '8 años', disponibilidad: 'Tiempo completo' },
-                                { id: 4, profesional: 'Laura Sánchez', curp: 'SALN830404MDFLRS04', rfc: 'SALN830404DF3', experiencia: '10 años', disponibilidad: 'Medio tiempo' },
-                                { id: 5, profesional: 'Miguel Torres', curp: 'TORM840505HDFLNS05', rfc: 'TORM840505DF4', experiencia: '7 años', disponibilidad: 'Por proyecto' },
-                                { id: 6, profesional: 'Sofía Ramírez', curp: 'RARS850606MDFLRS06', rfc: 'RARS850606DF5', experiencia: '4 años', disponibilidad: 'Tiempo completo' },
-                                { id: 7, profesional: 'Luis Rojas', curp: 'ROJL860707HDFLNS07', rfc: 'ROJL860707DF6', experiencia: '2 años', disponibilidad: 'Medio tiempo' },
-                                { id: 8, profesional: 'Patricia Vargas', curp: 'VAPA870808MDFLRS08', rfc: 'VAPA870808DF7', experiencia: '6 años', disponibilidad: 'Por proyecto' },
-                                { id: 9, profesional: 'José García', curp: 'GAJJ880909HDFLNS09', rfc: 'GAJJ880909DF8', experiencia: '12 años', disponibilidad: 'Tiempo completo' },
-                                { id: 10, profesional: 'Elena Castro', curp: 'CAEL890101MDFLRS10', rfc: 'CAEL890101DF9', experiencia: '5 años', disponibilidad: 'Medio tiempo' },
-                                { id: 11, profesional: 'Roberto Núñez', curp: 'NUJR900202HDFLNS11', rfc: 'NUJR900202DFA', experiencia: '9 años', disponibilidad: 'Por proyecto' },
-                                { id: 12, profesional: 'Fernanda López', curp: 'LOLF910303MDFLRS12', rfc: 'LOLF910303DFB', experiencia: '4 años', disponibilidad: 'Tiempo completo' },
-                                { id: 13, profesional: 'Rafael Castillo', curp: 'CARA920404HDFLNS13', rfc: 'CARA920404DFC', experiencia: '7 años', disponibilidad: 'Medio tiempo' },
-                                { id: 14, profesional: 'Natalia Reyes', curp: 'RENA930505MDFLRS14', rfc: 'RENA930505DFD', experiencia: '3 años', disponibilidad: 'Por proyecto' },
-                                { id: 15, profesional: 'Andrés Molina', curp: 'MOAN940606HDFLNS15', rfc: 'MOAN940606DFE', experiencia: '6 años', disponibilidad: 'Tiempo completo' }
-                            ];
-
-
 
 
 

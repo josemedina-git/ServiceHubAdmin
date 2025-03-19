@@ -297,35 +297,30 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table align-items-center mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    onclick="sortTable(0)">
-                                                    Id Servicio <span class="material-symbols-rounded arrow"
-                                                        id="arrow-idService">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    onclick="sortTable(1)">
-                                                    Servicio <span class="material-symbols-rounded arrow"
-                                                        id="arrow-nameService">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    onclick="sortTable(2)">
-                                                    Id Categoria <span class="material-symbols-rounded arrow"
-                                                        id="arrow-idCategory">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                                    onclick="sortTable(3)">
-                                                    Categoría <span class="material-symbols-rounded arrow"
-                                                        id="arrow-nameCategory">expand_more</span>
-                                                </th>
-                                                <th
-                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
-                                                    Acciones
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
+                                    <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Palabra</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Categoría</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Acciones</th>
+        </tr>
+                                        <tbody>
+    @foreach($serviceCategories as $serviceCategory)
+    <tr>
+        <td class="text-xs font-weight-bold mb-0">{{ $serviceCategory->IdService }}</td>
+        <td class="text-xs font-weight-bold mb-0">{{ $serviceCategory->service->NameService }}</td>
+        <td class="text-xs font-weight-bold mb-0">{{ $serviceCategory->IdCategory }}</td>
+        <td class="text-xs font-weight-bold mb-0">{{ $serviceCategory->category->NameCategory }}</td>
+        <td class="align-middle">
+            <a href="{{ route('service_categories.edit', [$serviceCategory->IdService, $serviceCategory->IdCategory]) }}" class="btn btn-info">Editar</a>
+            <form action="{{ route('service_categories.destroy', [$serviceCategory->IdService, $serviceCategory->IdCategory]) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
                                     </table>
                                 </div>
                             </div>
@@ -351,7 +346,7 @@
 
                             function sortTable(columnIndex) {
                                 let direction = 1;
-                                const arrow = document.querySelector(`#arrow-${['idService', 'nameService', 'idCategory', 'nameCategory'][columnIndex]}`);
+                                const arrow = document.querySelector(#arrow-${['idService', 'nameService', 'idCategory', 'nameCategory'][columnIndex]});
 
                                 // Alternar dirección de la flecha
                                 if (arrow.innerHTML === 'expand_more') {
@@ -392,23 +387,7 @@
 
 
 
-                            const usuarios = [
-                                { idService: 1, nameService: 'Corte de Césped', idCategory: 3, nameCategory: 'Jardinería' },
-                                { idService: 2, nameService: 'Reparación de Tuberías', idCategory: 4, nameCategory: 'Plomería' },
-                                { idService: 3, nameService: 'Instalación Eléctrica', idCategory: 5, nameCategory: 'Electricidad' },
-                                { idService: 4, nameService: 'Fabricación de Muebles', idCategory: 6, nameCategory: 'Carpintería' },
-                                { idService: 5, nameService: 'Pintura de Interiores', idCategory: 7, nameCategory: 'Pintura' },
-                                { idService: 6, nameService: 'Limpieza Residencial', idCategory: 8, nameCategory: 'Limpieza' },
-                                { idService: 7, nameService: 'Cambio de Cerraduras', idCategory: 9, nameCategory: 'Cerrajería' },
-                                { idService: 8, nameService: 'Reparación de Calentadores', idCategory: 4, nameCategory: 'Plomería' },
-                                { idService: 9, nameService: 'Construcción de Muros', idCategory: 10, nameCategory: 'Albañilería' },
-                                { idService: 10, nameService: 'Mudanza Local', idCategory: 11, nameCategory: 'Mudanzas' },
-                                { idService: 11, nameService: 'Reparación de Autos', idCategory: 12, nameCategory: 'Mecánica' },
-                                { idService: 12, nameService: 'Instalación de Redes', idCategory: 13, nameCategory: 'Tecnología' },
-                                { idService: 13, nameService: 'Instalación de A/C', idCategory: 14, nameCategory: 'Climatización' },
-                                { idService: 14, nameService: 'Reparación de Refrigeradores', idCategory: 15, nameCategory: 'Electrodomésticos' },
-                                { idService: 15, nameService: 'Control de Plagas', idCategory: 16, nameCategory: 'Fumigación' }
-                            ];
+    
 
 
 
