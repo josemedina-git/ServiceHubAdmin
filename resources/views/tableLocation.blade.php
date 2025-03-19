@@ -331,9 +331,13 @@
                                                 </th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                                     onclick="sortTable(1)">
-                                                    Cliente <span class="material-symbols-rounded arrow"
-                                                        id="arrow-nombreCliente">expand_more</span>
+                                                    FirstName <span class="material-symbols-rounded arrow"
+                                                        id="arrow-firstName">expand_more</span>
                                                 </th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                    onclick="sortTable(2)">
+                                                    LastName <span class="material-symbols-rounded arrow"
+                                                        id="arrow-lastName">expand_more</span>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
                                                     onclick="sortTable(2)">
                                                     Dirección <span class="material-symbols-rounded arrow"
@@ -365,7 +369,28 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+        @foreach($locations as $location)
+        <tr>
+            <td class="text-xs font-weight-bold mb-0">{{ $location->IdLocation }}</td>
+            <td class="text-xs font-weight-bold mb-0">{{ $location->client->FirstName }}</td>
+            <td class="text-xs font-weight-bold mb-0">{{ $location->client->LastName }}</td>
+            <td class="text-xs font-weight-bold mb-0">{{ $location->Address }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $location->City }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $location->State }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $location->postal_code }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $location->Country }}</td>
+            <td class="align-middle">
+                <a href="{{ route('locations.edit', $location->IdLocation) }}" class="btn btn-info">Editar</a>
+                <form action="{{ route('locations.destroy', $location->IdLocation) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -433,23 +458,7 @@
 
 
 
-                            const usuarios = [
-                                { id: 1, nombreCliente: 'Juan Pérez', direccion: 'Calle Ficticia 123', ciudad: 'Ciudad de México', estado: 'CDMX', cp: '01000', pais: 'México' },
-                                { id: 2, nombreCliente: 'Ana Gómez', direccion: 'Av. Reforma 456', ciudad: 'Monterrey', estado: 'Nuevo León', cp: '64000', pais: 'México' },
-                                { id: 3, nombreCliente: 'Carlos López', direccion: 'Calle Sol 789', ciudad: 'Guadalajara', estado: 'Jalisco', cp: '44100', pais: 'México' },
-                                { id: 4, nombreCliente: 'Luisa Rodríguez', direccion: 'Calle Luna 101', ciudad: 'Cancún', estado: 'Quintana Roo', cp: '77500', pais: 'México' },
-                                { id: 5, nombreCliente: 'Pedro Martínez', direccion: 'Calle del Mar 202', ciudad: 'Acapulco', estado: 'Guerrero', cp: '39300', pais: 'México' },
-                                { id: 6, nombreCliente: 'Marta Hernández', direccion: 'Boulevard Insurgentes 303', ciudad: 'Tijuana', estado: 'Baja California', cp: '22000', pais: 'México' },
-                                { id: 7, nombreCliente: 'José Sánchez', direccion: 'Avenida Hidalgo 404', ciudad: 'Puebla', estado: 'Puebla', cp: '72000', pais: 'México' },
-                                { id: 8, nombreCliente: 'Laura Díaz', direccion: 'Calle de los Olivos 505', ciudad: 'Querétaro', estado: 'Querétaro', cp: '76000', pais: 'México' },
-                                { id: 9, nombreCliente: 'Jorge Martínez', direccion: 'Avenida de los Ángeles 606', ciudad: 'Toluca', estado: 'Estado de México', cp: '50000', pais: 'México' },
-                                { id: 10, nombreCliente: 'Patricia González', direccion: 'Calle Juárez 707', ciudad: 'Morelia', estado: 'Michoacán', cp: '58000', pais: 'México' },
-                                { id: 11, nombreCliente: 'Ricardo García', direccion: 'Calle de la Paz 808', ciudad: 'Culiacán', estado: 'Sinaloa', cp: '80000', pais: 'México' },
-                                { id: 12, nombreCliente: 'Verónica Torres', direccion: 'Calle San Juan 909', ciudad: 'Mazatlán', estado: 'Sinaloa', cp: '82000', pais: 'México' },
-                                { id: 13, nombreCliente: 'Héctor Ramírez', direccion: 'Avenida de las Palmas 1010', ciudad: 'Saltillo', estado: 'Coahuila', cp: '25000', pais: 'México' },
-                                { id: 14, nombreCliente: 'Isabel Fernández', direccion: 'Calle del Sol 1111', ciudad: 'Chihuahua', estado: 'Chihuahua', cp: '31000', pais: 'México' },
-                                { id: 15, nombreCliente: 'Eduardo Álvarez', direccion: 'Avenida López Mateos 1212', ciudad: 'León', estado: 'Guanajuato', cp: '37000', pais: 'México' }
-                            ];
+                            
 
 
 

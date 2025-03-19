@@ -331,145 +331,52 @@
     </nav>
     <!-- End Navbar -->
 
-    <div class="container-fluid py-2">
-      <div class="row">
-        <div class="col-12">
-
-
-
-          <div class="card my-4 shadow-lg border-0">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Agendar Servicio</h6>
-              </div>
-            </div>
-
-            <div class="card-body px-4 pb-4">
-
-            </div>
-          </div>
-
-          <div class="container d-flex justify-content-center">
-            <div class="row justify-content-center">
-              <div class="col-md-12">
-                <!-- Card conteniendo el formulario -->
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title text-center mb-4">Formulario de Agendas</h5>
-                    <form id="formulario" onsubmit="mostrarConfirmacion(event)">
-                      <div class="form-row me-2">
-                        <div class="form-group col-md-4 me-2">
-                          <label for="cliente" class="text-black fw-bold">
-                            Cliente</label>
-                          <select id="cliente" class="lista">
-                            <option selected>Seleccionar</option>
-                            <option>Juan Marcelo</option>
-                            <option>Pedro Sanchez Martinez</option>
-                            <option>Marta Martin</option>
-                            <option>Gustavo Rangel</option>
-                          </select>
+    @include('layouts.partials.aside')
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+        <div class="container-fluid py-2">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card my-4 shadow-lg border-0">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                                <h6 class="text-white text-capitalize ps-3">Agenda</h6>
+                            </div>
                         </div>
-                        <br>
-                        <div class="form-group col-md-4 me-2">
-                          <label for="ciudad" class="text-black fw-bold">Servicio</label>
-                          <select id="ciudad" class="lista">
-                            <option selected>Seleccionar</option>
-                            <option>Reparación de fugas</option>
-                            <option>Instalación de grifos y lavabos</option>
-                            <option>Mantenimiento de sistemas de drenaje</option>
-                            <option>Desatasco de tuberías</option>
-
-                            <!-- Electricidad -->
-                            <option>Instalación de interruptores y enchufes</option>
-                            <option>Reparación de cortocircuitos</option>
-                            <option>Instalación de lámparas y bombillas</option>
-                            <option>Reemplazo de cableado eléctrico</option>
-
-                            <!-- Carpintería -->
-                            <option>Fabricación de muebles a medida</option>
-                            <option>Instalación de puertas y ventanas</option>
-                            <option>Reparación de muebles de madera</option>
-                            <option>Restauración de muebles antiguos</option>
-
-                            <!-- Jardinería -->
-                            <option>Diseño y mantenimiento de jardines</option>
-                            <option>Siembra de plantas y árboles</option>
-                            <option>Recorte y poda de arbustos</option>
-                            <option>Instalación de sistemas de riego</option>
-
-                            <!-- Limpieza -->
-                            <option>Limpieza general de casas</option>
-                            <option>Limpiar alfombras y tapicería</option>
-                            <option>Lavado de ventanas</option>
-                            <option>Limpieza de oficinas</option>
-
-                            <!-- Pintura -->
-                            <option>Pintura de interiores</option>
-                            <option>Pintura de exteriores</option>
-                            <option>Pintura de muebles</option>
-                            <option>Pintura de fachadas</option>
-
-                            <!-- Cerrajería -->
-                            <option>Apertura de cerraduras</option>
-                            <option>Instalación de cerraduras nuevas</option>
-                            <option>Reparación de cerraduras dañadas</option>
-                            <option>Cambio de llaves</option>
-
-                            <!-- Reparación de electrodomésticos -->
-                            <option>Reparación de refrigeradores</option>
-                            <option>Reparación de lavadoras</option>
-                            <option>Reparación de microondas</option>
-                            <option>Reparación de estufas</option>
-
-                            <!-- Servicio de mudanza -->
-                            <option>Embalaje y transporte de muebles</option>
-                            <option>Desmontaje y montaje de muebles</option>
-                            <option>Traslado de electrodomésticos</option>
-                            <option>Mudanza de oficina</option>
-
-                            <!-- Albañilería -->
-                            <option>Construcción de paredes</option>
-                            <option>Reparación de paredes y techos</option>
-                            <option>Instalación de pisos</option>
-                            <option>Colocación de azulejos y cerámica</option>
-                          </select>
+                        <div class="card-body px-4 pb-4">
+                            <form action="{{ isset($agenda) ? route('agendas.update', $agenda->IdAgenda) : route('agendas.store') }}" method="POST">
+                                @csrf
+                                @if(isset($agenda))
+                                    @method('PUT')
+                                @endif
+                                <div class="mb-3">
+                                    <label for="IdClient" class="form-label">Id del cliente</label>
+                                    <input type="text" class="form-control custom-input" id="IdClient" name="IdClient" value="{{ isset($agenda) ? $agenda->IdClient : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="IdService" class="form-label">Id del servicio</label>
+                                    <input type="text" class="form-control custom-input" id="IdService" name="IdService" value="{{ isset($agenda) ? $agenda->IdService : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="DateAgenda" class="form-label">Fecha agendada</label>
+                                    <input type="date" class="form-control custom-input" id="DateAgenda" name="DateAgenda" value="{{ isset($agenda) ? $agenda->DateAgenda : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="AgendaStatus" class="form-label">Estatus</label>
+                                    <select class="form-select custom-input" id="AgendaStatus" name="AgendaStatus">
+                                        <option value="pending" {{ isset($agenda) && $agenda->AgendaStatus == 'pending' ? 'selected' : '' }}>pending</option>
+                                        <option value="confirmed" {{ isset($agenda) && $agenda->AgendaStatus == 'confirmed' ? 'selected' : '' }}>confirmed</option>
+                                        <option value="cancelled" {{ isset($agenda) && $agenda->AgendaStatus == 'cancelled' ? 'selected' : '' }}>cancelled</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">{{ isset($agenda) ? 'Guardar Cambios' : 'Agregar Agenda' }}</button>
+                            </form>
                         </div>
-
-                      </div>
-                      <div class="form-row">
-
-                        <div class="form-group col-md-4">
-                          <label for="fecha" class="text-black fw-bold">Fecha</label>
-                          <input type="date" class="form-control custom-input" id="fecha"
-                            placeholder="Seleccionar fecha">
-                        </div>
-                        <div class="form-group col-md-4">
-                          <label for="Status" class="text-black fw-bold">Status</label>
-                          <input type="text" class="form-control custom-input" id="pais" placeholder="Status">
-                        </div>
-                      </div>
-                      <button type="submit" class="btn btn-info">Enviar</button>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-
-
-
-              </div>
             </div>
-            <!-- Card de confirmación modal, inicialmente oculta -->
-            <div id="confirmacionModal" class="modal-overlay" style="display: none;">
-              <div class="card modal-card">
-                <div class="card-body">
-                  <button type="button" class="close-btn" onclick="cerrarConfirmacion()">×</button>
-                  <h5 class="card-title text-center">¡Agregado Correctamente!</h5>
-                  <p class="card-text text-center">La Agenda ha sido agregada con éxito.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          @include('layouts.partials.footer')
-  </main>
+        </div>
+                    @include('layouts.partials.footer')
+    </main>
 
   @include('layouts.partials.config')
 </body>

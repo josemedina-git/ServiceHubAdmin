@@ -298,30 +298,31 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table align-items-center mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    onclick="sortTable(0)">
-                                                    Id <span class="material-symbols-rounded arrow"
-                                                        id="arrow-id">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    onclick="sortTable(1)">
-                                                    Palabra <span class="material-symbols-rounded arrow"
-                                                        id="arrow-keyWord">expand_more</span>
-                                                </th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                                    onclick="sortTable(2)">
-                                                    Categoria <span class="material-symbols-rounded arrow"
-                                                        id="arrow-categoria">expand_more</span>
-                                                </th>
-                                                <th
-                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
-                                                    Acciones
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
+                                    <thead>
+        <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Palabra</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Categoría</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($keywords as $keyword)
+        <tr>
+            <td class="text-xs font-weight-bold mb-0">{{ $keyword->IdKeyWord }}</td>
+            <td class="text-xs font-weight-bold mb-0">{{ $keyword->Word }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $keyword->category->NameCategory }}</td>
+            <td class="align-middle">
+                <a href="{{ route('keywords.edit', $keyword->IdKeyWord) }}" class="btn btn-info">Editar</a>
+                <form action="{{ route('keywords.destroy', $keyword->IdKeyWord) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -390,23 +391,7 @@
 
 
 
-                            const usuarios = [
-                                { id: 1, keyWord: 'Corte', categoria: 'Jardinería' },
-                                { id: 2, keyWord: 'Reparación', categoria: 'Plomería' },
-                                { id: 3, keyWord: 'Instalación', categoria: 'Electricidad' },
-                                { id: 4, keyWord: 'Fabricación', categoria: 'Carpintería' },
-                                { id: 5, keyWord: 'Pintura', categoria: 'Pintura' },
-                                { id: 6, keyWord: 'Limpieza', categoria: 'Limpieza' },
-                                { id: 7, keyWord: 'Cambio', categoria: 'Cerrajería' },
-                                { id: 8, keyWord: 'Instalación', categoria: 'Plomería' },
-                                { id: 9, keyWord: 'Construcción', categoria: 'Albañilería' },
-                                { id: 10, keyWord: 'Mudanza', categoria: 'Mudanzas' },
-                                { id: 11, keyWord: 'Reparación', categoria: 'Mecánica' },
-                                { id: 12, keyWord: 'Instalación', categoria: 'Tecnología' },
-                                { id: 13, keyWord: 'Instalación', categoria: 'Climatización' },
-                                { id: 14, keyWord: 'Reparación', categoria: 'Electrodomésticos' },
-                                { id: 15, keyWord: 'Control', categoria: 'Fumigación' }
-                            ];
+                            
 
 
                             //PAginacion de abajito

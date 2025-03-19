@@ -319,8 +319,13 @@
                                                 </th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     onclick="sortTable(1)">
-                                                    Cliente <span class="material-symbols-rounded arrow"
-                                                        id="arrow-nameCliente">expand_more</span>
+                                                    FirstName <span class="material-symbols-rounded arrow"
+                                                        id="arrow-firstName">expand_more</span>
+                                                </th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                    onclick="sortTable(2)">
+                                                    LastName <span class="material-symbols-rounded arrow"
+                                                        id="arrow-lastName">expand_more</span>
                                                 </th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                                     onclick="sortTable(2)">
@@ -343,7 +348,26 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+        @foreach($agendas as $agenda)
+        <tr>
+            <td class="text-xs font-weight-bold mb-0">{{ $agenda->IdAgenda }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->clients->FirstName }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->clients->LastName }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->services->NameService }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->DateAgenda }}</td>
+            <td class="text-center text-xs font-weight-bold mb-0">{{ $agenda->AgendaStatus }}</td>
+            <td class="align-middle">
+                <a href="{{ route('keywords.edit', $keyword->IdKeyWord) }}" class="btn btn-info">Editar</a>
+                <form action="{{ route('keywords.destroy', $keyword->IdKeyWord) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -408,23 +432,7 @@
 
 
 
-                            const usuarios = [
-                                { id: 1, nameCliente: 'Juan Pérez', servicio: 'Instalación de puerta', fecha: '2024-11-01', estado: 'Confirmado' },
-                                { id: 2, nameCliente: 'Ana López', servicio: 'Reparación de caño', fecha: '2024-11-02', estado: 'Pendiente' },
-                                { id: 3, nameCliente: 'Carlos Gómez', servicio: 'Construcción de estantería', fecha: '2024-11-03', estado: 'Confirmado' },
-                                { id: 4, nameCliente: 'Marta Rodríguez', servicio: 'Limpieza de alfombra', fecha: '2024-11-04', estado: 'Cancelado' },
-                                { id: 5, nameCliente: 'Pedro Sánchez', servicio: 'Reemplazo de interruptor', fecha: '2024-11-05', estado: 'Confirmado' },
-                                { id: 6, nameCliente: 'Lucía Martínez', servicio: 'Instalación de cortinas', fecha: '2024-11-06', estado: 'Pendiente' },
-                                { id: 7, nameCliente: 'Miguel Hernández', servicio: 'Reparación de grifo', fecha: '2024-11-07', estado: 'Confirmado' },
-                                { id: 8, nameCliente: 'María Torres', servicio: 'Mantenimiento de puerta', fecha: '2024-11-08', estado: 'Cancelado' },
-                                { id: 9, nameCliente: 'José Ramírez', servicio: 'Limpieza de ventanas', fecha: '2024-11-09', estado: 'Pendiente' },
-                                { id: 10, nameCliente: 'Sara Jiménez', servicio: 'Reemplazo de lámpara', fecha: '2024-11-10', estado: 'Confirmado' },
-                                { id: 11, nameCliente: 'David Fernández', servicio: 'Instalación de estufa', fecha: '2024-11-11', estado: 'Pendiente' },
-                                { id: 12, nameCliente: 'Elena Pérez', servicio: 'Reparación de caño', fecha: '2024-11-12', estado: 'Confirmado' },
-                                { id: 13, nameCliente: 'Raúl Sánchez', servicio: 'Construcción de terraza', fecha: '2024-11-13', estado: 'Cancelado' },
-                                { id: 14, nameCliente: 'Claudia Díaz', servicio: 'Limpieza profunda', fecha: '2024-11-14', estado: 'Pendiente' },
-                                { id: 15, nameCliente: 'Felipe Ortega', servicio: 'Instalación de aire acondicionado', fecha: '2024-11-15', estado: 'Confirmado' }
-                            ];
+                            
 
 
 

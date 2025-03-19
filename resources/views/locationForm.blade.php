@@ -319,130 +319,52 @@
 
         <!-- End Navbar -->
 
+        @include('layouts.partials.aside')
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <div class="container-fluid py-2">
             <div class="row">
                 <div class="col-12">
-
-
-
                     <div class="card my-4 shadow-lg border-0">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Agregar Ubicación</h6>
+                                <h6 class="text-white text-capitalize ps-3">Ubicación</h6>
                             </div>
                         </div>
-
                         <div class="card-body px-4 pb-4">
-                            
+                            <form action="{{ isset($location) ? route('locations.update', $location->IdLocation) : route('locations.store') }}" method="POST">
+                                @csrf
+                                @if(isset($location))
+                                    @method('PUT')
+                                @endif
+                                <div class="mb-3">
+                                    <label for="Address" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="Address" name="Address" value="{{ isset($location) ? $location->Address : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="City" class="form-label">Ciudad</label>
+                                    <input type="text" class="form-control" id="City" name="City" value="{{ isset($location) ? $location->City : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="State" class="form-label">Estado</label>
+                                    <input type="text" class="form-control" id="State" name="State" value="{{ isset($location) ? $location->State : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="postal_code" class="form-label">Código Postal</label>
+                                    <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ isset($location) ? $location->postal_code : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Country" class="form-label">País</label>
+                                    <input type="text" class="form-control" id="Country" name="Country" value="{{ isset($location) ? $location->Country : '' }}">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">{{ isset($location) ? 'Guardar Cambios' : 'Agregar Ubicación' }}</button>
+                            </form>
                         </div>
                     </div>
-
-                    <div class="container d-flex justify-content-center">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <!-- Card conteniendo el formulario -->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center mb-4">Formulario de Direcciones</h5>
-                                        <form id="formulario" onsubmit="mostrarConfirmacion(event)">
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="cliente" class="text-black fw-bold">
-                                                        Cliente</label>
-                                                    <select id="cliente" class="lista">
-                                                        <option selected>Seleccionar</option>
-                                                        <option>Juan Marcelo</option>
-                                                        <option>Pedro Sanchez Martinez</option>
-                                                        <option>Marta Martin</option>
-                                                        <option>Gustavo Rangel</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-8">
-                                                    <label for="direccion" class="text-black fw-bold">Dirección</label>
-                                                    <input type="text" class="form-control custom-input" id="direccion"
-                                                        placeholder="Calle y número">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="ciudad" class="text-black fw-bold">Ciudad</label>
-                                                    <select id="ciudad" class="lista">
-                                                        <option>Seleccionar</option>
-                                                        <option>Aguascalientes</option>
-                                                        <option>Acapulco</option>
-                                                        <option>Ciudad de México</option>
-                                                        <option>Guadalajara</option>
-                                                        <option>Monterrey</option>
-                                                        <option>Puebla</option>
-                                                        <option>Tijuana</option>
-                                                        <option>León</option>
-                                                        <option>Cancún</option>
-                                                        <option>Merida</option>
-                                                        <option>Chihuahua</option>
-                                                        <option>Morelia</option>
-                                                        <option>Querétaro</option>
-                                                        <option>Hermosillo</option>
-                                                        <option>Saltillo</option>
-                                                        <option>San Luis Potosí</option>
-                                                        <option>Mexicali</option>
-                                                        <option>Veracruz</option>
-                                                        <option>Durango</option>
-                                                        <option>Tuxtla Gutiérrez</option>
-                                                        <option>Tepic</option>
-                                                        <option>Oaxaca</option>
-                                                        <option>Colima</option>
-                                                        <option>Ensenada</option>
-                                                        <option>Fresnillo</option>
-                                                        <option>Los Mochis</option>
-                                                        <option>Celaya</option>
-                                                        <option>Villahermosa</option>
-                                                        <option>Culiacán</option>
-                                                        <option>La Paz</option>
-                                                        <option>Matamoros</option>
-                                                        <option>Irapuato</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="estado" class="text-black fw-bold">Estado</label>
-                                                    <input type="text" class="form-control custom-input" id="estado"
-                                                        placeholder="Estado">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="pais" class="text-black fw-bold">País</label>
-                                                    <input type="text" class="form-control custom-input" id="pais"
-                                                        placeholder="País">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="codigoPostal" class="text-black fw-bold">Código
-                                                        Postal</label>
-                                                    <input type="text" class="form-control custom-input"
-                                                        id="codigoPostal" placeholder="Código Postal">
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Enviar</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                        <!-- Card de confirmación modal, inicialmente oculta -->
-                        <div id="confirmacionModal" class="modal-overlay" style="display: none;">
-                            <div class="card modal-card">
-                                <div class="card-body">
-                                    <button type="button" class="close-btn" onclick="cerrarConfirmacion()">×</button>
-                                    <h5 class="card-title text-center">¡Agregado Correctamente!</h5>
-                                    <p class="card-text text-center">La ubicación ha sido agregada con éxito.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
                     @include('layouts.partials.footer')
-
     </main>
     @include('layouts.partials.config')
 </body>

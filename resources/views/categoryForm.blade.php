@@ -309,56 +309,38 @@
 
         <!-- End Navbar -->
 
+        @include('layouts.partials.aside')
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <div class="container-fluid py-2">
             <div class="row">
                 <div class="col-12">
                     <div class="card my-4 shadow-lg border-0">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Agregar Categoría</h6>
+                                <h6 class="text-white text-capitalize ps-3">Editar Categoría</h6>
                             </div>
                         </div>
                         <div class="card-body px-4 pb-4">
+                            <form action="{{ isset($category) ? route('categories.update', $category->IdCategory) : route('categories.store') }}" method="POST">
+                                @csrf
+                                @if(isset($category))
+                                    @method('PUT')
+                                @endif
+                                <div class="mb-3">
+                                    <label for="NameCategory" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="NameCategory" name="NameCategory" value="{{ isset($category) ? $category->NameCategory : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Description" class="form-label">Descripción</label>
+                                    <textarea class="form-control" id="Description" name="Description">{{ isset($category) ? $category->Description : '' }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">{{ isset($category) ? 'Guardar Cambios' : 'Agregar Categoría' }}</button>
+                            </form>
                         </div>
                     </div>
-                    <div class="container d-flex justify-content-center">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <!-- Card conteniendo el formulario -->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center mb-4">Formulario de Categorias</h5>
-                                        <form id="formulario" onsubmit="mostrarConfirmacion(event)">
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="password" class="text-black fw-bold">Categoría</label>
-                                                    <input type="text" class="form-control custom-input" id="serv"
-                                                        placeholder="Nombre">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="comentarios">Descripción</label>
-                                                <textarea id="comentarios" class="form-control" rows="4"
-                                                    placeholder="Describe tu servicio aquí..."></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Enviar</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Card de confirmación modal, inicialmente oculta -->
-                        <div id="confirmacionModal" class="modal-overlay" style="display: none;">
-                            <div class="card modal-card">
-                                <div class="card-body">
-                                    <button type="button" class="close-btn" onclick="cerrarConfirmacion()">×</button>
-                                    <h5 class="card-title text-center">¡Agregado Correctamente!</h5>
-                                    <p class="card-text text-center">La Categoría ha sido agregada con éxito.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
                     @include('layouts.partials.footer')
     </main>
     
