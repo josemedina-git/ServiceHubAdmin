@@ -310,40 +310,31 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table align-items-center mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(0)">
-                                                        Id <span class="material-symbols-rounded arrow"
-                                                            id="arrow-id">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(1)">
-                                                        Servicio <span class="material-symbols-rounded arrow"
-                                                            id="arrow-nombre">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                                        onclick="sortTable(2)">
-                                                        Descripción <span class="material-symbols-rounded arrow"
-                                                            id="arrow-descripcion">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                        onclick="sortTable(3)">
-                                                        Email <span class="material-symbols-rounded arrow"
-                                                            id="arrow-email">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                        onclick="sortTable(4)">
-                                                        Número de telefono <span class="material-symbols-rounded arrow"
-                                                            id="arrow-phone">expand_more</span>
-                                                    </th>
-                                                    <th
-                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
-                                                        Acciones
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
+                                        <thead>
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Nombre del Servicio</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Descripción</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Acciones</th>
+    </tr>
+</thead>
+                                            <tbody>
+    @foreach($services as $service)
+    <tr>
+        <td class="text-xs font-weight-bold mb-0">{{ $service->IdService }}</td>
+        <td class="text-xs font-weight-bold mb-0">{{ $service->NameService }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $service->Description }}</td>
+        <td class="align-middle">
+            <a href="{{ route('services.edit', $service->IdService) }}" class="btn btn-info">Editar</a>
+            <form action="{{ route('services.destroy', $service->IdService) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -414,23 +405,6 @@
 
 
 
-                            const usuarios = [
-                                { id: 1, nombre: 'Corte de Césped', descripcion: 'Servicio de corte y mantenimiento de césped.', email: 'cesped@example.com', phone: '+52 449 123 4567', nombreCat: 'Jardinería' },
-                                { id: 2, nombre: 'Reparación de Tuberías', descripcion: 'Reparación de fugas y daños en tuberías.', email: 'plomeria@example.com', phone: '+52 449 234 5678', nombreCat: 'Plomería' },
-                                { id: 3, nombre: 'Instalación Eléctrica', descripcion: 'Instalación de sistemas eléctricos para hogares.', email: 'electricidad@example.com', phone: '+52 449 345 6789', nombreCat: 'Electricidad' },
-                                { id: 4, nombre: 'Fabricación de Muebles', descripcion: 'Creación de muebles personalizados.', email: 'carpinteria@example.com', phone: '+52 449 456 7890', nombreCat: 'Carpintería' },
-                                { id: 5, nombre: 'Pintura de Interiores', descripcion: 'Pintura y decoración de interiores.', email: 'pintura@example.com', phone: '+52 449 567 8901', nombreCat: 'Pintura' },
-                                { id: 6, nombre: 'Limpieza Residencial', descripcion: 'Limpieza de casas y departamentos.', email: 'limpieza@example.com', phone: '+52 449 678 9012', nombreCat: 'Limpieza' },
-                                { id: 7, nombre: 'Cambio de Cerraduras', descripcion: 'Servicios de cerrajería y cambio de cerraduras.', email: 'cerrajeria@example.com', phone: '+52 449 789 0123', nombreCat: 'Cerrajería' },
-                                { id: 8, nombre: 'Instalación de Calentadores', descripcion: 'Instalación y mantenimiento de calentadores de agua.', email: 'calentadores@example.com', phone: '+52 449 890 1234', nombreCat: 'Plomería' },
-                                { id: 9, nombre: 'Construcción de Muros', descripcion: 'Construcción y reparación de muros.', email: 'albanileria@example.com', phone: '+52 449 901 2345', nombreCat: 'Albañilería' },
-                                { id: 10, nombre: 'Mudanza Local', descripcion: 'Servicios de mudanza dentro de la ciudad.', email: 'mudanzas@example.com', phone: '+52 449 012 3456', nombreCat: 'Mudanzas' },
-                                { id: 11, nombre: 'Reparación de Autos', descripcion: 'Mantenimiento y reparación de vehículos.', email: 'mecanica@example.com', phone: '+52 449 123 4567', nombreCat: 'Mecánica' },
-                                { id: 12, nombre: 'Instalación de Redes', descripcion: 'Configuración de redes para hogares y oficinas.', email: 'tecnologia@example.com', phone: '+52 449 234 5678', nombreCat: 'Tecnología' },
-                                { id: 13, nombre: 'Instalación de A/C', descripcion: 'Instalación y mantenimiento de aire acondicionado.', email: 'climatizacion@example.com', phone: '+52 449 345 6789', nombreCat: 'Climatización' },
-                                { id: 14, nombre: 'Reparación de Refrigeradores', descripcion: 'Mantenimiento de refrigeradores y congeladores.', email: 'electrodomesticos@example.com', phone: '+52 449 456 7890', nombreCat: 'Electrodomésticos' },
-                                { id: 15, nombre: 'Control de Plagas', descripcion: 'Servicios de fumigación para el control de plagas.', email: 'fumigacion@example.com', phone: '+52 449 567 8901', nombreCat: 'Fumigación' }
-                            ];
 
 
 

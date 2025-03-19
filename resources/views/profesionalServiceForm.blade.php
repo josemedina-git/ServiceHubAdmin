@@ -318,159 +318,51 @@
 
         <!-- End Navbar -->
 
+        @include('layouts.partials.aside')
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <div class="container-fluid py-2">
             <div class="row">
                 <div class="col-12">
-
-
-
                     <div class="card my-4 shadow-lg border-0">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Asignar Servicio al Profesional</h6>
+                                <h6 class="text-white text-capitalize ps-3">Profesional Servicio</h6>
                             </div>
                         </div>
-
                         <div class="card-body px-4 pb-4">
-
+                            <form action="{{ isset($professionalService) ? route('professional_services.update', $professionalService->IdProfessional) : route('professional_services.store') }}" method="POST">
+                                @csrf
+                                @if(isset($professionalService))
+                                    @method('PUT')
+                                @endif
+                                <div class="mb-3">
+                                    <label for="IdProfessional" class="form-label">Id Profesional</label>
+                                    <input type="text" class="form-control" id="IdProfessional" name="IdProfessional" value="{{ isset($professionalService) ? $professionalService->IdProfessional : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="IdService" class="form-label">Id Servicio</label>
+                                    <input type="text" class="form-control" id="IdService" name="IdService" value="{{ isset($professionalService) ? $professionalService->IdService : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Email" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="Email" name="Email" value="{{ isset($professionalService) ? $professionalService->Email : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="PhoneNumber" class="form-label">Teléfono</label>
+                                    <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="{{ isset($professionalService) ? $professionalService->PhoneNumber : '' }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="PriceHour" class="form-label">Precio por Hora</label>
+                                    <input type="text" class="form-control" id="PriceHour" name="PriceHour" value="{{ isset($professionalService) ? $professionalService->PriceHour : '' }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">{{ isset($professionalService) ? 'Guardar Cambios' : 'Agregar Profesional Servicio' }}</button>
+                            </form>
                         </div>
                     </div>
-
-                    <div class="container d-flex justify-content-center">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <!-- Card conteniendo el formulario -->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center mb-4">Formulario</h5>
-                                        <form id="formulario" onsubmit="mostrarConfirmacion(event)">
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4 me-2">
-                                                    <label for="cliente" class="text-black fw-bold">
-                                                        Profesional</label>
-                                                    <select id="cliente" class="lista">
-                                                        <option selected>Seleccionar</option>
-                                                        <option>Juan Marcelo</option>
-                                                        <option>Pedro Sanchez Martinez</option>
-                                                        <option>Marta Martin</option>
-                                                        <option>Gustavo Rangel</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="cliente" class="text-black fw-bold">
-                                                        Servicio</label>
-                                                    <select id="cliente" class="lista">
-                                                        <option selected>Seleccionar</option>
-                                                        <option>Reparación de fugas</option>
-                                                        <option>Instalación de grifos y lavabos</option>
-                                                        <option>Mantenimiento de sistemas de drenaje</option>
-                                                        <option>Desatasco de tuberías</option>
-
-                                                        <!-- Electricidad -->
-                                                        <option>Instalación de interruptores</option>
-                                                        <option>Reparación de cortocircuitos</option>
-                                                        <option>Instalación de lámparas y bombillas</option>
-                                                        <option>Reemplazo de cableado eléctrico</option>
-
-                                                        <!-- Carpintería -->
-                                                        <option>Fabricación de muebles a medida</option>
-                                                        <option>Instalación de puertas y ventanas</option>
-                                                        <option>Reparación de muebles de madera</option>
-                                                        <option>Restauración de muebles antiguos</option>
-
-                                                        <!-- Jardinería -->
-                                                        <option>Diseño y mantenimiento de jardines</option>
-                                                        <option>Siembra de plantas y árboles</option>
-                                                        <option>Recorte y poda de arbustos</option>
-                                                        <option>Instalación de sistemas de riego</option>
-
-                                                        <!-- Limpieza -->
-                                                        <option>Limpieza general de casas</option>
-                                                        <option>Limpiar alfombras y tapicería</option>
-                                                        <option>Lavado de ventanas</option>
-                                                        <option>Limpieza de oficinas</option>
-
-                                                        <!-- Pintura -->
-                                                        <option>Pintura de interiores</option>
-                                                        <option>Pintura de exteriores</option>
-                                                        <option>Pintura de muebles</option>
-                                                        <option>Pintura de fachadas</option>
-
-                                                        <!-- Cerrajería -->
-                                                        <option>Apertura de cerraduras</option>
-                                                        <option>Instalación de cerraduras nuevas</option>
-                                                        <option>Reparación de cerraduras dañadas</option>
-                                                        <option>Cambio de llaves</option>
-
-                                                        <!-- Reparación de electrodomésticos -->
-                                                        <option>Reparación de refrigeradores</option>
-                                                        <option>Reparación de lavadoras</option>
-                                                        <option>Reparación de microondas</option>
-                                                        <option>Reparación de estufas</option>
-
-                                                        <!-- Servicio de mudanza -->
-                                                        <option>Embalaje y transporte de muebles</option>
-                                                        <option>Desmontaje y montaje de muebles</option>
-                                                        <option>Traslado de electrodomésticos</option>
-                                                        <option>Mudanza de oficina</option>
-
-                                                        <!-- Albañilería -->
-                                                        <option>Construcción de paredes</option>
-                                                        <option>Reparación de paredes y techos</option>
-                                                        <option>Instalación de pisos</option>
-                                                        <option>Colocación de azulejos y cerámica</option>
-                                                    </select>
-                                                </div>
-                                            </div>
- 
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="password" class="text-black fw-bold">Número de
-                                                        Telefono</label>
-                                                    <input type="phone" class="form-control custom-input" id="password"
-                                                        placeholder="Télefono">
-                                                </div>
-                                            </div>
- 
-                                            <div class="form-row">
-                                                <div class="form-group col-md-10">
-                                                    <label for="email" class="text-black fw-bold">Correo
-                                                        Electrónico</label>
-                                                    <input type="email" class="form-control custom-input" id="email"
-                                                        placeholder="Correo">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="price" class="text-black fw-bold">Precio Por
-                                                        Hora</label>
-                                                    <input type="price" class="form-control custom-input" id="price"
-                                                        placeholder="Precio">
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Enviar</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                        <!-- Card de confirmación modal, inicialmente oculta -->
-                        <div id="confirmacionModal" class="modal-overlay" style="display: none;">
-                            <div class="card modal-card">
-                                <div class="card-body">
-                                    <button type="button" class="close-btn" onclick="cerrarConfirmacion()">×</button>
-                                    <h5 class="card-title text-center">¡Agregado Correctamente!</h5>
-                                    <p class="card-text text-center">La profesional y servicio ha sido agregada con éxito.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @include('layouts.partials.footer')
-
+                </div>
+            </div>
+        </div>
+        @include('layouts.partials.footer')
     </main>
     @include('layouts.partials.config')
 </body>

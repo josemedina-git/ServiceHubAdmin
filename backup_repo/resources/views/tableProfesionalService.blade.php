@@ -315,44 +315,34 @@
                                     <div class="table-responsive">
                                         <table class="table align-items-center mb-0">
                                             <thead>
-                                                <tr>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(0)">
-                                                        Id Profesional <span class="material-symbols-rounded arrow"
-                                                            id="arrow-idProfesional">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(1)">
-                                                        Profesional <span class="material-symbols-rounded arrow"
-                                                            id="arrow-nombre">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                        onclick="sortTable(2)">
-                                                        Servicio <span class="material-symbols-rounded arrow"
-                                                            id="arrow-service">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                        onclick="sortTable(3)">
-                                                        Número de teléfono <span class="material-symbols-rounded arrow"
-                                                            id="arrow-phone">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                        onclick="sortTable(4)">
-                                                        Email <span class="material-symbols-rounded arrow"
-                                                            id="arrow-email">expand_more</span>
-                                                    </th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center"
-                                                        onclick="sortTable(5)">
-                                                        Precio por Hora <span class="material-symbols-rounded arrow"
-                                                            id="arrow-price">expand_more</span>
-                                                    </th>
-                                                    <th
-                                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
-                                                        Acciones
-                                                    </th>
-                                                </tr>
+                                            <tr>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Id Servicio</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Email</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Teléfono</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Precio por Hora</th>
+    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Acciones</th>
+</tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody>
+    @foreach($professionalServices as $professionalService)
+    <tr>
+        <td class="text-xs font-weight-bold mb-0">{{ $professionalService->IdProfessional }}</td>
+        <td class="text-xs font-weight-bold mb-0">{{ $professionalService->IdService }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $professionalService->Email }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $professionalService->PhoneNumber }}</td>
+        <td class="text-center text-xs font-weight-bold mb-0">{{ $professionalService->PriceHour }}</td>
+        <td class="align-middle">
+            <a href="{{ route('professional_services.edit', $professionalService->IdProfessional) }}" class="btn btn-info">Editar</a>
+            <form action="{{ route('professional_services.destroy', $professionalService->IdProfessional) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -381,7 +371,7 @@
 
                             function sortTable(columnIndex) {
                                 let direction = 1;
-                                const arrow = document.querySelector(`#arrow-${['idProfesional', 'nombre', 'service', 'phone', 'email', 'price'][columnIndex]}`);
+                                const arrow = document.querySelector(`#arrow-${['idProfessional', 'nombre', 'service', 'phone', 'email', 'price'][columnIndex]}`);
 
                                 // Alternar dirección de la flecha
                                 if (arrow.innerHTML === 'expand_more') {
@@ -421,28 +411,6 @@
                             }
 
 
-
-                            const usuarios = [
-                                { idProfesional: 1, nombre: 'Carlos Martínez', service: 'Corte de Césped', phone: '+52 449 123 4567', email: 'carlos.cesped@example.com', price: 500 },
-                                { idProfesional: 2, nombre: 'Ana Gómez', service: 'Reparación de Tuberías', phone: '+52 449 234 5678', email: 'ana.plomeria@example.com', price: 750 },
-                                { idProfesional: 3, nombre: 'Juan Pérez', service: 'Instalación Eléctrica', phone: '+52 449 345 6789', email: 'juan.electricidad@example.com', price: 1200 },
-                                { idProfesional: 4, nombre: 'Laura Sánchez', service: 'Fabricación de Muebles', phone: '+52 449 456 7890', email: 'laura.carpinteria@example.com', price: 3000 },
-                                { idProfesional: 5, nombre: 'Miguel Torres', service: 'Pintura de Interiores', phone: '+52 449 567 8901', email: 'miguel.pintura@example.com', price: 900 },
-                                { idProfesional: 6, nombre: 'Sofía Ramírez', service: 'Limpieza Residencial', phone: '+52 449 678 9012', email: 'sofia.limpieza@example.com', price: 400 },
-                                { idProfesional: 7, nombre: 'Luis Rojas', service: 'Cambio de Cerraduras', phone: '+52 449 789 0123', email: 'luis.cerrajeria@example.com', price: 600 },
-                                { idProfesional: 8, nombre: 'Patricia Vargas', service: 'Instalación de Calentadores', phone: '+52 449 890 1234', email: 'patricia.calentadores@example.com', price: 1500 },
-                                { idProfesional: 9, nombre: 'José García', service: 'Construcción de Muros', phone: '+52 449 901 2345', email: 'jose.albanileria@example.com', price: 2500 },
-                                { idProfesional: 10, nombre: 'Elena Castro', service: 'Mudanza Local', phone: '+52 449 012 3456', email: 'elena.mudanzas@example.com', price: 1800 },
-                                { idProfesional: 11, nombre: 'Roberto Núñez', service: 'Reparación de Autos', phone: '+52 449 123 4568', email: 'roberto.mecanica@example.com', price: 1000 },
-                                { idProfesional: 12, nombre: 'Fernanda López', service: 'Instalación de Redes', phone: '+52 449 234 5679', email: 'fernanda.tecnologia@example.com', price: 1300 },
-                                { idProfesional: 13, nombre: 'Rafael Castillo', service: 'Instalación de A/C', phone: '+52 449 345 6780', email: 'rafael.climatizacion@example.com', price: 2000 },
-                                { idProfesional: 14, nombre: 'Natalia Reyes', service: 'Reparación de Refrigeradores', phone: '+52 449 456 7891', email: 'natalia.electrodomesticos@example.com', price: 800 },
-                                { idProfesional: 15, nombre: 'Andrés Molina', service: 'Control de Plagas', phone: '+52 449 567 8902', email: 'andres.fumigacion@example.com', price: 950 }
-                            ];
-
-
-
-
                             //PAginacion de abajito
                             let currentPage = 1;
                             let recordsPerPage = 5;  // Valor inicial
@@ -467,7 +435,7 @@
                                 recordsToShow.forEach(usuario => {
                                     const row = `
             <tr>
-                <td class="text-xs font-weight-bold mb-0">${usuario.idProfesional}</td>
+                <td class="text-xs font-weight-bold mb-0">${usuario.idProfessional}</td>
                 <td class="text-xs font-weight-bold mb-0">${usuario.nombre}</td>
                 <td class="text-xs font-weight-bold mb-0">${usuario.service}</td>
                 <td class="text-center text-xs font-weight-bold mb-0">${usuario.phone}</td>
