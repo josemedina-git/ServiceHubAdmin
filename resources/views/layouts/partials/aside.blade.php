@@ -38,6 +38,12 @@
                 <span class="nav-link-text ms-1">Servicio Profesional</span>
               </a>
             </li>
+            <li>
+              <a class="nav-link text-dark" href="{{ route('PromotionManagement') }}">
+                <i class="material-symbols-rounded opacity-5">table_chart</i>
+                <span class="nav-link-text ms-1">Gestión de Ascensos</span>
+              </a>
+            </li>
           </ul>
         </li>
 

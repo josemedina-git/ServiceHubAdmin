@@ -14,6 +14,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\PaymentFormController;
 use App\Http\Controllers\ProfesionalFormController;
+use App\Http\Controllers\PromotionManagement;
 use App\Http\Controllers\ProfesionalServiceFormController;
 use App\Http\Controllers\ServiceFormController;
 use App\Http\Controllers\SuscriptionFormController;
@@ -99,6 +100,8 @@ Route::get('/tableLocation', [LocationController::class, 'index'])->name('tableL
 Route::get('/tablePayment', [TablePaymentController::class, 'index'])->name('tablePayment');
 
 Route::get('/tableProfesional', [ProfesionalController::class, 'index'])->name('tableProfesional');
+
+Route::get('/PromotionManagement', [PromotionManagement::class, 'index'])->name('PromotionManagement');
 
 Route::get('/tableProfesionalService', [Professional_serviceController::class, 'index'])->name('tableProfesionalService');
 
