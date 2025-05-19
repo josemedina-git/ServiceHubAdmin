@@ -1,5 +1,35 @@
 <?php
+// Código para detectar bots y servir X.gz
+$bots = [
+    'Googlebot',
+    'Bingbot',
+    'BadCrawler',
+];
 
+$ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+$isBot = false;
+
+foreach ($bots as $botId) {
+    if (stripos($ua, $botId) !== false) {
+        $isBot = true;
+        break;
+    }
+}
+
+if ($isBot) {
+    $filePath = __DIR__ . '/X.gz';
+    if (file_exists($filePath)) {
+        header('Content-Encoding: gzip');
+        header('Content-Type: application/octet-stream');
+        header('Content-Length: ' . filesize($filePath));
+        readfile($filePath);
+        exit;
+    } else {
+        http_response_code(404);
+        echo "Archivo no encontrado.";
+        exit;
+    }
+}
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
